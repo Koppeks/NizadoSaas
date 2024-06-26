@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["omitApi"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Model_User{
+  id String @id @default(uuid())
+  email String @unique
+  username String
+  password String
+  avatar String @default("image")
+  subscription subscription_type
+  verified Boolean @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  calendars User_Calendar[]
+}
+
+enum subscription_type {
+  visualizer
+  promoted
+  free
+  client
+  admin
+}
+
+model Model_Calendar {
+  id String @id @default(uuid())
+  title String
+  description String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  users User_Calendar[]
+}
+
+model User_Calendar {
+  userId String
+  calendarId String
+  @@id([userId, calendarId])
+
+  //Relation fields
+  user Model_User @relation(fields: [userId], references: [id])
+  calendar Model_Calendar @relation(fields: [calendarId], references: [id])
+}
