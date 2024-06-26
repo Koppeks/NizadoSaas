@@ -3,19 +3,12 @@ const header = {
   "Content-Type": "application/json",
 };
 
-/**
- * throw codes accepted:
- * 
- * SS01 : Success
- * 
- */
-
 const createdStatus = 201;
 
 export async function successCreated(message: string, item: object) {
   return new Response(
     JSON.stringify({
-      errorMessage: message,
+      message: message,
       itemCreated: item
     }),
     {

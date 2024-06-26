@@ -1,4 +1,4 @@
-import { contentWasNotFoundError, internalServerError, missingParameters, userUnautorizedError } from "@/app/api/_Utils/ErrorHandling"
+import { contentWasNotFoundError, internalServerError, missingParametersError, userUnautorizedError } from "@/app/api/_Utils/ErrorHandling"
 import { prisma } from "@/app/api/_Utils/Prisma";
 import { successCreated, successTest } from "@/app/api/_Utils/SuccessHandling"
 import { signToken } from "@/app/api/_Utils/Jwt";
@@ -16,11 +16,10 @@ export async function POST(request: Request) {
 
     const newToken = signToken({userId: user.id}, "1h")
 
-    // return successTest("Test success")
     return successCreated("The user is now logged", {token: newToken})
   }catch(error:any){
     console.log(error)
-    if(error.code == "S001") return missingParameters("One of the parameters is missing.");
+    if(error.code == "S001") return missingParametersError("One of the parameters is missing.");
     if(error.code == "S002") return contentWasNotFoundError("The user was not found.")
     if(error.code == "S003") return userUnautorizedError("The password enter was not correct.")
     return internalServerError("Internal error on the server" , error)
