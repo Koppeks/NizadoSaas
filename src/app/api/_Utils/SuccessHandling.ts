@@ -21,7 +21,7 @@ export async function successCreated(message: string, item: object) {
 export async function successTest(message:string) {
   return new Response(
     JSON.stringify({
-      errorMessage: message
+      testMessageTea: message
     }),
     {
       status: 418,

@@ -1,0 +1,41 @@
+@import "../../abstracts/_variables";
+
+.verify_user_email_container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(198, 214, 228);
+  flex-direction: column;
+  
+  .logo{
+    width: 100px;
+    margin: 2rem auto 1rem;
+  }
+  
+  .card{
+    background-color: white;
+    box-shadow: $preset-email-box-shadow;
+    width: 500px;
+    border-radius: 4px;
+    overflow: hidden;
+
+    .hero{
+      background-color: $color-variant-1;
+      padding: 1rem;
+      color: white;
+    }
+    .content{
+
+      button{
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+        border: none;
+        background-color: $color-variant-1;
+        color: white;
+        padding: 0.5rem 1rem;
+        margin: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
-import { contentWasNotFoundError, internalServerError, missingParametersError, userUnautorizedError } from "@/app/api/_Utils/ErrorHandling"
+import { errorHandler} from "@/app/api/_Utils/ErrorHandling"
 import { prisma } from "@/app/api/_Utils/Prisma";
-import { successCreated, successTest } from "@/app/api/_Utils/SuccessHandling"
+import { successCreated } from "@/app/api/_Utils/SuccessHandling"
 import { signToken } from "@/app/api/_Utils/Jwt";
 import * as argon2 from "argon2";
 
@@ -18,10 +18,6 @@ export async function POST(request: Request) {
 
     return successCreated("The user is now logged", {token: newToken})
   }catch(error:any){
-    console.log(error)
-    if(error.code == "S001") return missingParametersError("One of the parameters is missing.");
-    if(error.code == "S002") return contentWasNotFoundError("The user was not found.")
-    if(error.code == "S003") return userUnautorizedError("The password enter was not correct.")
-    return internalServerError("Internal error on the server" , error)
+    return errorHandler(error)
   }
 }
