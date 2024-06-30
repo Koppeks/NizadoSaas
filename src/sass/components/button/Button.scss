@@ -1,0 +1,32 @@
+@import "../../abstracts/variables";
+
+.preset_button{
+  background-color: white;
+  outline: none;
+  border: 1px solid gray;
+  color: gray;
+  padding: 0.5rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1;
+  transition: $transition;
+
+  &.primary{
+    background-color: $color-standout;
+    color: $color-clear;
+
+    &:hover{
+      background-color: $color-standout-hover;
+    }
+  }
+  &.secondary{
+    background-color: $color-white;
+    color: $color-standout;
+    border: 1px solid $color-standout;
+  }
+  &.tertiary{
+    background-color: transparent;
+    color: $color-standout;
+    border: 1px solid transparent;
+  }
+}

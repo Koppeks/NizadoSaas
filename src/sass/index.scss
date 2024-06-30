@@ -3,5 +3,6 @@
 @use "./base/_base";
 @use "./base/_reset";
 
-@use "./components/buttons/Buttons.scss";
+@use "./components/button/Button.scss";
+@use "./components/input/Input.scss";
 @use "./components/emails/VerifyUserEmail.scss";

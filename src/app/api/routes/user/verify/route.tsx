@@ -34,19 +34,22 @@ export async function POST(request: Request) {
   const { email } = await request.json();
   try {
     if (!email) throw { code: "S003" };
-    const user = await prisma.model_User.findUnique({
-      omit: { password: true },
-      where: { email },
-    });
-    if (!user) throw { code: "S001" };
-    if (user.verified) throw { code: "S005" };
+    const authResult = authMiddleware(request);
+    if (authResult instanceof NextResponse) {
+      const user = await prisma.model_User.findUnique({
+        omit: { password: true },
+        where: { email },
+      });
+      if (!user) throw { code: "S001" };
+      if (user.verified) throw { code: "S005" };
+      const token = signToken({ email }, "1h");
+      const template =
+        getTemplate({ username: user.username }, token, "validateEmail") || null;
+      if (template) await sendEmail(email, "Verifica tu email", template);
 
-    const token = signToken({ email }, "1h");
-    const template =
-      getTemplate({ username: user.username }, token, "validateEmail") || null;
-    if (template) await sendEmail(email, "Verifica tu email", template);
-
-    return successCreated("Se ha enviado el email", {});
+      return successCreated("Se ha enviado el email", {});
+    }
+    throw authResult;
   } catch (error: any) {
     return errorHandler(error);
   }
