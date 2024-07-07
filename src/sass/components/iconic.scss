@@ -1,0 +1,21 @@
+@import "../abstracts/variables";
+
+.preset_iconic{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+
+  .circle{
+    background-color: $color-white;
+    padding: 6px;
+    border-radius: 50%;
+    box-shadow: $preset-icon-box-shadow;
+  }
+
+  .text{
+    font-weight: 500;
+    color: $color-dark;
+  }
+}

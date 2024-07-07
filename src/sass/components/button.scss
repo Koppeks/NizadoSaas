@@ -1,0 +1,60 @@
+@import "../abstracts/variables";
+
+.preset_button{
+  outline: none;
+  border: 1px solid transparent;
+  padding: 0.5rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  z-index: 1;
+  transition: $transition;
+  box-shadow: $preset-button-box-shadow;
+  
+  &.primary{
+    background-color: $color-standout;
+    color: $color-clear;
+
+    &:hover{
+      background-color: $color-standout-hover;
+    }
+  }
+  &.secondary{
+    background-color: $color-white;
+    color: $color-standout;
+    border: 1px solid $color-standout;
+  }
+  &.tertiary{
+    background-color: transparent;
+    color: $color-standout;
+    border: 1px solid transparent;
+
+    &:hover{
+      background-color: $color-gray;
+    }
+  }
+
+  &.quaternary{
+    background-color: transparent;
+    color: $color-standout;
+    padding: $preset-standar-mesure;
+    position: relative;
+    box-shadow: none;
+
+    &::after{
+      content: "";
+      position: absolute;
+      bottom: calc($preset-standar-mesure/2);
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: $color-standout;
+      transition: $transition;
+    }
+
+    &:hover{
+      &::after{
+        width: 100%;
+      }
+    }
+  }
+}

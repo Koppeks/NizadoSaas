@@ -1,0 +1,52 @@
+@import "../abstracts/variables";
+
+.container_navbar{
+  background-color: $color-white;
+  box-shadow: $preset-icon-box-shadow;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  padding: $preset-standar-mesure * 2;
+  align-items: center;
+  justify-items: center;
+
+  .center_menu{
+    ul{
+      display: flex;
+      gap: $preset-standar-mesure * 3;
+      list-style: none;
+
+      li{
+        padding: $preset-standar-mesure $preset-standar-mesure*2;
+        border-bottom: 2px solid transparent;
+        cursor: pointer;
+        transition: $transition;
+        position: relative;
+
+        &::after{
+          content: "";
+          width: 0px;
+          height: 3px;
+          border-radius: $preset-standar-mesure;
+          background-color: $color-gray;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          transition: $transition;
+        }
+        
+        &:hover{
+          &::after{
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .left_nav{
+    display: flex;
+    gap: $preset-standar-mesure * 3;
+  }
+}

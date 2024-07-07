@@ -1,0 +1,19 @@
+@import "../abstracts/variables";
+
+.Form_Footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: $preset-standar-mesure * 2;
+  gap: $preset-standar-mesure * 2;
+  width: 100%;
+
+  .primary_options{
+    width: 50%;
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    justify-content: center;
+    gap: $preset-standar-mesure*2;
+  }
+}

@@ -14,10 +14,13 @@ type TextComponent = <C extends React.ElementType = "span">(
 //@ts-expect-error -- Text crying null
 export const Text: TextComponent = forwardRef(
   <C extends React.ElementType = "span">(
-    { as, ...props }: TextProps<C>,
+    { as, variant, ...props }: TextProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
     const Component = as || "span"
-    return <Component ref={ref} {...props} />;
+    if(variant === "error"){
+      console.log(props)
+    }
+    return <Component ref={ref} className={`preset_text ${variant}`} {...props} />;
   }
 );

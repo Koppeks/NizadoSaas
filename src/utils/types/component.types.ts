@@ -1,7 +1,8 @@
-import { ComponentProps } from "react"
+import { FieldInputProps, FormikErrors, FormikProps } from "formik"
+import React, { ComponentProps } from "react"
 
 export type ButtonProps = ComponentProps<"button"> & {
-  variant: "primary" | "secondary" | "tertiary",
+  variant: "primary" | "secondary" | "tertiary" | "quaternary",
   children: string
 }
 
@@ -11,7 +12,8 @@ export type PropsOf<
 > = JSX.LibraryManagedAttributes<C, React.ComponentPropsWithoutRef<C>>
 
 type AsProp<C extends React.ElementType> = {
-  as?: C
+  as?: C,
+  variant?: "error" | "small"
 }
 
 export type ExtendableProps<
@@ -41,5 +43,34 @@ export type PolymorphicComponentPropsWithRef<
 
 export type InputProps = ComponentProps<"input"> & {
   type: string,
-  label?: string
+  label?: string,
+  name: string,
+  value: FieldInputProps<any>["value"],
+  error?: FormikErrors<string>,
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  handleBlur: (e: React.ChangeEvent<HTMLInputElement>) => void,
+}
+
+export type NavbarProps = {
+  userLoged : boolean
+}
+
+export type IconicProps = {
+  text? : string,
+  redirectTo?: string,
+  icon : "icon_user" | "icon_gear" | "icon_bell"
+}
+
+
+export type ExpandMenuProps = {
+  menuTitle: string,
+  aligned: "left"| "center" | "right",
+  elements: {
+    text: string,
+    href: string
+  }[]
+}
+
+export type FormFooterProps = {
+  actualEndpoint : "sign-in" | "sign-up" | "forgot-password"
 }

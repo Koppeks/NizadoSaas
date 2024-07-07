@@ -9,7 +9,7 @@ export async function successCreated(message: string, item: object) {
   return new Response(
     JSON.stringify({
       message: message,
-      itemCreated: item
+      payload: item
     }),
     {
       status: createdStatus,

@@ -3,13 +3,21 @@
 $color-variant-1: rgb(190, 73, 73);
 $preset-email-box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
+$preset-icon-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$preset-button-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+$preset-standar-mesure: 6px;
+
 $transition: .3s all ease-in-out;
 
 $color-primary: #FEBB56;
+$color-primary-light: #f8c374;
 $color-secondary: #D68916;
+$color-gray: #ececec;
 $color-dark: #1D1D1D;
 $color-clear: #F1F1F1;
 $color-white: #FFF;
 $color-background: #FFF9EF;
 $color-standout: #1B4FD6;
 $color-standout-hover: #063cc4;
+$color-warning: #e4270f;

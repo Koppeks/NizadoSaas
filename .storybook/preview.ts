@@ -1,6 +1,7 @@
 import type { Preview } from "@storybook/react";
 import "../src/sass/index.scss"
 
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -9,7 +10,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-  },
+  }
 };
 
 export default preview;

@@ -1,0 +1,9 @@
+@import "../abstracts/variables";
+
+.Form_Sign_Up_Container{
+  padding: $preset-standar-mesure*2;
+  display: flex;
+  flex-direction: column;
+  gap: $preset-standar-mesure*6;
+  width: 300px;
+}

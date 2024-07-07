@@ -1,0 +1,93 @@
+@import "../abstracts/variables";
+
+.preset_expand_menu{
+  position: relative;
+
+  .title{
+    padding: $preset-standar-mesure $preset-standar-mesure*2;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: $transition;
+    position: relative;
+    list-style: none;
+    letter-spacing: 1px;
+
+    &::after{
+      content: "";
+      width: 0px;
+      height: 3px;
+      background-color: $color-gray;
+      position: absolute;
+      transform: translate(0, 50%);
+      bottom: 0;
+      left: 0;
+      transition: $transition;
+    }
+    
+    &:hover{
+      &::after{
+        width: 100%;
+      }
+    }
+
+    &.active{
+      background-color: $color-primary;
+
+      &::after{
+        background-color: $color-white;
+      }
+    }
+  }
+
+  .menu_dropdown{
+    position: absolute;
+    background-color: $color-secondary;
+    width: 200px;
+    border-radius: $preset-standar-mesure;
+    padding: $preset-standar-mesure * 2;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+    transition: $transition;
+    display: flex;
+    flex-direction: column;
+
+    &.left{
+      right: 0;
+      border-top-right-radius: 0;
+    }
+
+    &.right{
+      left: 0;
+      border-top-left-radius: 0;
+    }
+
+    &.center{
+      left: 50%;
+      right: 50%;
+      transform: translate(-50%);
+    }
+
+    &.active{
+      background-color: $color-primary;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .element_text{
+      width: 100%;
+      padding: $preset-standar-mesure;
+      position: relative;
+      cursor: pointer;
+      transition: $transition;
+      border-radius: calc($preset-standar-mesure / 2);
+      margin: calc($preset-standar-mesure / 3);
+      background-image: linear-gradient(to left, $color-primary 0%, $color-white 60%);
+      background-size: 0;
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      
+      &:hover{
+        background-color: $color-primary-light;
+        background-size: 100%;
+      }
+    }
+  }
+}

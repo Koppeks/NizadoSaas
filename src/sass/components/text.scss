@@ -1,0 +1,15 @@
+@import "../abstracts/variables";
+
+.preset_text{
+  &.error{
+    color: $color-warning;
+    font-weight: 600;
+    font-size: calc(1rem / 2);
+    padding-left: $preset-standar-mesure;
+  }
+  &.small{
+    font-weight: 400;
+    font-size: calc(1rem / 2);
+    text-align: center;
+  }
+}

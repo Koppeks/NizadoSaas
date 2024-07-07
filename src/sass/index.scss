@@ -3,6 +3,22 @@
 @use "./base/_base";
 @use "./base/_reset";
 
-@use "./components/button/Button.scss";
-@use "./components/input/Input.scss";
-@use "./components/emails/VerifyUserEmail.scss";
+//Icons
+@use "./icons/icons.scss";
+
+//Components -- base building blocks
+@use "./components/button.scss";
+@use "./components/input.scss";
+@use "./components/verifyUserEmail.scss";
+@use "./components/iconic.scss";
+@use "./components/expand_menu.scss";
+@use "./components/text.scss";
+
+//Containers -- colection of components
+@use "./containers/navbar.scss";
+@use "./containers/form_sign_up.scss";
+@use "./containers/form_footer.scss";
+
+//Pages -- colections of containers and components
+@use "./pages/home.scss";
+@use "./pages/main_forms.scss";
