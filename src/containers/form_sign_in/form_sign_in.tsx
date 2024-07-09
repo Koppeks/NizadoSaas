@@ -2,12 +2,16 @@
 
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
+import useStore from "@/redux/UseStore";
 import { requestSignIn } from "@/utils/api_requests/forms";
 import { signInSchema } from "@/utils/schemas/schemas";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import { forwardRef } from "react";
 
 export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
+
+  const {addUser, addToken} = useStore()
+
   return (
     <Formik
       initialValues={{
@@ -23,9 +27,21 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
         const requestData = { email: values.email, password: values.password };
         const response = await requestSignIn(requestData)
 
-        // ACA
+        if(response.status !== 200){
+          console.log("No buena response")
+          return null
+        } 
+
+        const tokenStatus = {
+          token: response.data.payload.token,
+          valid: true
+        }
+
+        addUser(response.data.payload.user)
+        addToken(tokenStatus)
 
         console.log(response)
+
       }}
     >
       {({

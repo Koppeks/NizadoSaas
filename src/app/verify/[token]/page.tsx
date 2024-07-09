@@ -1,12 +1,12 @@
 "use client"
 
-import { verifyTokenService } from "@/app/(Utils)/ApiService"
+import { userVerification } from "@/utils/api_requests/authorizationToken"
 import { useEffect } from "react"
 
 export default function Verify({params} : {params: {token: string}}){
 
   useEffect(() => {
-    const isTokenOk = verifyTokenService(params.token)
+    const isTokenOk = userVerification(params.token)
     console.log(isTokenOk)
   },[])
 

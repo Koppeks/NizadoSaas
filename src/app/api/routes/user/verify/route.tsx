@@ -33,15 +33,15 @@ export async function POST(request: Request) {
   //Pedir la vefiricacion
   const { email } = await request.json();
   try {
-    if (!email) throw { code: "S003" };
+    if (!email) throw { code: "S003", message: "There are some missing parameters" };
     const authResult = authMiddleware(request);
     if (authResult instanceof NextResponse) {
       const user = await prisma.model_User.findUnique({
         omit: { password: true },
         where: { email },
       });
-      if (!user) throw { code: "S001" };
-      if (user.verified) throw { code: "S005" };
+      if (!user) throw { code: "S001", message: "The user was not found" };
+      if (user.verified) throw { code: "S005", message: "The user is already verified" };
       const token = signToken({ email }, "1h");
       const template =
         getTemplate({ username: user.username }, token, "validateEmail") || null;

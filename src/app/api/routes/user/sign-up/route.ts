@@ -13,7 +13,7 @@ export async function POST(request: Request) {
       !body.password ||
       !body.avatar ||
       !body.subscription
-    ) throw ({code: "S001"})
+    ) throw ({code: "S003", message: "There are some missing parameters"})
 
     const hashArgonPassword = await argon2.hash(body.password)
     const newUser = await prisma.model_User.create({

@@ -12,6 +12,7 @@ const header = {
  * S004 : Wrong parameters
  * S005 : Redundant
  * S006 : ExpiredToken
+ * S007 : Error on bearer send
  * 
  * ----
  * 
@@ -39,7 +40,17 @@ export async function expiredTokenError(message: string) {
     }
   );
 }
-
+export async function bearerTokenError(message: string) {
+  return new Response(
+    JSON.stringify({
+      errorMessage: message
+    }),
+    {
+      status: badRequestStatus,
+      headers: header,
+    }
+  );
+}
 export async function redundantError(message:string) {
   return new Response(
     JSON.stringify({
@@ -52,7 +63,6 @@ export async function redundantError(message:string) {
   );
   
 }
-
 export async function missingParametersError(message: string) {
   return new Response(
     JSON.stringify({
@@ -64,7 +74,6 @@ export async function missingParametersError(message: string) {
     }
   );
 }
-
 export async function wrongParametersError(message: string) {
   return new Response(
     JSON.stringify({
@@ -76,7 +85,6 @@ export async function wrongParametersError(message: string) {
     }
   );
 }
-
 export async function contentWasNotFoundError(message: string) {
   return new Response(
     JSON.stringify({
@@ -99,7 +107,6 @@ export async function userUnautorizedError(message: string) {
     }
   );
 }
-
 export async function internalServerError(message: string, error: any) {
   return new Response(
     JSON.stringify({
@@ -139,12 +146,15 @@ export async function recordUpdatePrismaError(message:string , error: string ) {
   );
 }
 
-
-export async function errorHandler(error: {code: string}) {
+export async function errorHandler(error: {code: string, message: string}) {
   console.log(error)
-  if(error.code == "S001") return contentWasNotFoundError("Content was not found")
-  if(error.code == "S002") return userUnautorizedError("User is not authorized")
-  if(error.code == "S003") return missingParametersError("The token cannot be null")
-  if(error.code == "S006") return expiredTokenError("The token has expired or is invalid")
-  return internalServerError("Error verifying the user", error)
+  console.log("Error handler log")
+  if(error.code == "S001") return contentWasNotFoundError(error.message)
+  if(error.code == "S002") return userUnautorizedError(error.message)
+  if(error.code == "S003") return missingParametersError(error.message)
+  if(error.code == "S004") return wrongParametersError(error.message)
+  if(error.code == "S005") return redundantError(error.message)
+  if(error.code == "S006") return expiredTokenError(error.message)
+  if(error.code == "S007") return bearerTokenError(error.message)
+  return internalServerError("Internal server error", error)
 }

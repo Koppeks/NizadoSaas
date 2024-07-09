@@ -58,7 +58,8 @@ export type NavbarProps = {
 export type IconicProps = {
   text? : string,
   redirectTo?: string,
-  icon : "icon_user" | "icon_gear" | "icon_bell"
+  handler?: () => void,
+  icon : "icon_user" | "icon_gear" | "icon_bell" | "icon_signout"
 }
 
 

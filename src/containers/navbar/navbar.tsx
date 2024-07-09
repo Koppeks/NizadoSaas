@@ -1,13 +1,18 @@
+"use client"
+
 import { NavbarProps } from "@/utils/types/component.types";
 import { forwardRef } from "react";
 import { ButtonRedirect} from "../../components/button/button";
 import { Iconic } from "../../components/iconic/iconic";
 import { NizadoLogo } from "../../components/nizado_logo/nizado_logo";
 import { ExpandMenu } from "@/components/expand_menu/expand_menu";
+import useStore from "@/redux/UseStore";
 
 
 
 export const Navbar = forwardRef<HTMLElement, NavbarProps> (({userLoged}, ref) => {
+
+  const {removeToken} = useStore()
 
   return(
     <div className="container_navbar">
@@ -38,9 +43,21 @@ export const Navbar = forwardRef<HTMLElement, NavbarProps> (({userLoged}, ref) =
       </nav>
 
       <div className="left_nav">
-        <ButtonRedirect redirectTo="/sign-up" variant="primary">Try free</ButtonRedirect>
-        <Iconic redirectTo="/sign-in" text="Sign in" icon="icon_user"/>
-        <Iconic icon="icon_gear"/>
+        {
+        userLoged ? 
+          <>
+            <Iconic icon="icon_user"/>
+            <Iconic icon="icon_bell"/>
+            <Iconic icon="icon_signout" handler={()=> removeToken()}/>
+          </>
+          :
+          <>
+            <ButtonRedirect redirectTo="/sign-up" variant="primary">Try free</ButtonRedirect>
+            <Iconic redirectTo="/sign-in" text="Sign in" icon="icon_user"/>
+            <Iconic icon="icon_gear"/>
+          </>
+        
+        }
       </div>
 
     </div>

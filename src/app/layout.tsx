@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "../sass/index.scss"
+import { AuthWrapper } from "./(Wrappers)/AuthWrapper";
 
 export const metadata: Metadata = {
   title: "Nizado",
@@ -13,8 +14,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <AuthWrapper>
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    </AuthWrapper>
   );
 }

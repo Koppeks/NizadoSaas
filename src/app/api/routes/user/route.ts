@@ -32,7 +32,7 @@ export async function PUT(request:Request) {
         return acc
       }, {} as Record<string, any>)
       
-      if(Object.keys(checkIfCorrectProperties).length == 0) throw ({code: "S004"})
+      if(Object.keys(checkIfCorrectProperties).length == 0) throw ({code: "S004", message: "The edit properties are not correct"})
 
       if(Object.keys(checkIfCorrectProperties).includes("password")){
         checkIfCorrectProperties.password = await argon2.hash(checkIfCorrectProperties.password)
