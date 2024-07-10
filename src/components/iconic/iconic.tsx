@@ -4,24 +4,25 @@ import { Text } from "../text/text";
 import { useRouter } from "next/navigation";
 
 
-export const Iconic = forwardRef<HTMLElement, IconicProps>(({text, icon, handler, redirectTo, ...props}, ref) => {
+export const Iconic = forwardRef<HTMLDivElement, IconicProps>(({text, icon, customFunction, redirectTo, ...props}, ref) => {
   
   const router = useRouter()
 
   const handleClick = () => {
-    if (handler) {
-      handler();
+    if (customFunction) {
+      customFunction();
     } else if (redirectTo) {
       router.push(redirectTo);
     }
   };
 
   return(
-    <span ref={ref} className="preset_iconic" onClick={handleClick}>
+    <div ref={ref} className="preset_iconic" onClick={() => handleClick()}>
       <div className="circle">
         <i className={icon}></i>
       </div>
-      <Text className="text" as="p">{text !== "" && text}</Text>
-    </span>
+      {text !== "" && <Text className="text" as="p">{text}</Text>}
+    </div>
+
   )
 })

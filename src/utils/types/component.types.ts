@@ -51,14 +51,10 @@ export type InputProps = ComponentProps<"input"> & {
   handleBlur: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-export type NavbarProps = {
-  userLoged : boolean
-}
-
 export type IconicProps = {
   text? : string,
   redirectTo?: string,
-  handler?: () => void,
+  customFunction?: () => void,
   icon : "icon_user" | "icon_gear" | "icon_bell" | "icon_signout"
 }
 

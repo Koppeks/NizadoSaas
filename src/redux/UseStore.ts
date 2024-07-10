@@ -20,19 +20,29 @@ const createTokenSlice: StateCreator<TokenSlice> = (set, get, store) => ({
   addToken: (status: TokenStatus) => set({status}),
   getToken: () => get().status.token,
   checkTokenStatus: () => get().status.valid,
-  removeToken: () => set({status: initialStateToken})
+  removeToken: () => {
+    set({status: initialStateToken})
+    useStore.getState().removeUser()
+  }
 })
-
 
 const useStore = create<UserSlice & TokenSlice>()(
   devtools(
     persist(
       (set, get, store) => ({
         ...createUserSlice(set, get, store),
-        ...createTokenSlice(set, get, store),
+        ...createTokenSlice(set, get, store)
       }), {name: "user-persist-storage"}
     ),{name: "userStore"}
   )
 )
+
+// Delete old storage
+// const clearOldState = () => {
+//   localStorage.removeItem('user-persist-storage');
+//   localStorage.removeItem('userStore');
+// };
+
+// clearOldState();
 
 export default useStore

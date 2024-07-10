@@ -13,6 +13,7 @@
 @use "./components/iconic.scss";
 @use "./components/expand_menu.scss";
 @use "./components/text.scss";
+@use "./components/loader_animation.scss";
 
 //Containers -- colection of components
 @use "./containers/navbar.scss";
@@ -22,6 +23,7 @@
 //Pages -- colections of containers and components
 @use "./pages/home.scss";
 @use "./pages/main_forms.scss";
+@use "./pages/loading.scss";
 
 // Layouts -- Full layout of endpoint
 @use "./layouts/hub.scss";

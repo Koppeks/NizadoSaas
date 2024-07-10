@@ -6,11 +6,14 @@ import useStore from "@/redux/UseStore";
 import { requestSignIn } from "@/utils/api_requests/forms";
 import { signInSchema } from "@/utils/schemas/schemas";
 import { Formik, FormikHelpers, FormikValues } from "formik";
+import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
 
 export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
 
   const {addUser, addToken} = useStore()
+
+  const router = useRouter()
 
   return (
     <Formik
@@ -40,7 +43,7 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
         addUser(response.data.payload.user)
         addToken(tokenStatus)
 
-        console.log(response)
+        router.push("/")
 
       }}
     >

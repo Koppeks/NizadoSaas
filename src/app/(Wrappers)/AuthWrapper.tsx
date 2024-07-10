@@ -18,17 +18,17 @@ export const AuthWrapper: React.FC<{ children: ReactNode }> = ({
   const { getToken, removeToken } = useStore();
   const token = getToken();
 
-  async function verified(token: string): Promise<void | Promise<any>> {
-    const decoded = await checkTokenAuthorization(token);
-    return decoded;
-  }
 
   useEffect(() => {
     const verifyToken = async () => {
       if (token !== null) {
         try {
-          const response = await verified(token);
-          if (
+          const response = await checkTokenAuthorization(token);
+          console.log(response)
+          if(response.status !== 200){
+            removeToken();
+            router.push("/sign-in");
+          }else if(
             response.status == 200 &&
             (pathname == "/sign-in" ||
               pathname == "/sign-up" ||
