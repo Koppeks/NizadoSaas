@@ -69,7 +69,7 @@ export const Navbar = forwardRef<HTMLDivElement>(
         <div className="left_nav">
           {userLog ? (
             <>
-              <Iconic icon="icon_user" />
+              <Iconic icon="icon_user" redirectTo="/hub" />
               <Iconic icon="icon_bell" />
               <Iconic icon="icon_signout" customFunction={() => removeToken()} />
             </>

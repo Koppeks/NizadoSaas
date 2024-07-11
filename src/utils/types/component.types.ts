@@ -1,9 +1,18 @@
-import { FieldInputProps, FormikErrors, FormikProps } from "formik"
+import { FieldInputProps, FormikErrors } from "formik"
 import React, { ComponentProps } from "react"
 
 export type ButtonProps = ComponentProps<"button"> & {
   variant: "primary" | "secondary" | "tertiary" | "quaternary",
   children: string
+}
+
+export type ButtonHubProps = ComponentProps<"div"> & {
+  text: string,
+  icon: string,
+  expandedElements: {
+    expandText: string,
+    redirectTo: string
+  }[]
 }
 
 // Text dynamic types
@@ -55,7 +64,7 @@ export type IconicProps = {
   text? : string,
   redirectTo?: string,
   customFunction?: () => void,
-  icon : "icon_user" | "icon_gear" | "icon_bell" | "icon_signout"
+  icon : "icon_user" | "icon_gear" | "icon_bell" | "icon_signout" | "icon_home" | "icon_calendar"
 }
 
 

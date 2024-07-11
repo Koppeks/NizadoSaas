@@ -1,11 +1,12 @@
 "use client";
 
-import { ButtonProps } from "@/utils/types/component.types";
+import { ButtonHubProps, ButtonProps } from "@/utils/types/component.types";
 import { useRouter } from "next/navigation";
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+import { Text } from "../text/text";
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps & { type: string }>(
-  ({ variant, type, children }, ref) => {
+  ({ variant, type, children, ...props }, ref) => {
     return (
       <button ref={ref} type={type} className={`preset_button ${variant}`}>
         {children}
@@ -17,7 +18,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps & { type: string }>(
 const ButtonRedirect = forwardRef<
   HTMLButtonElement,
   ButtonProps & { redirectTo: string }
->(({ variant, redirectTo, children }, ref) => {
+>(({ variant, redirectTo, children, ...props }, ref) => {
   const router = useRouter();
 
   const handleRedirect = () => {
@@ -36,4 +37,26 @@ const ButtonRedirect = forwardRef<
   );
 });
 
-export { Button, ButtonRedirect };
+const ButtonHub = forwardRef<HTMLDivElement, ButtonHubProps>(({text, icon, expandedElements , ...props}, ref) => {
+
+  const [deployOptions, setDeployOptions] = useState(false)
+
+  return(
+    <div ref={ref} className="preset_button_hub">
+      <div className="content" onClick={() => setDeployOptions(!deployOptions)}>
+        <button>
+          <i className={icon}></i>
+          <Text as="p" className="text">{text}</Text>
+        </button>
+        <i className="icon">{"<"}</i>
+      </div>
+      <div className={`options_dropdown ${deployOptions && "deployed"}`}>
+        {expandedElements.map((element, index)=> {
+          return <Text key={index} className="option" as="p">{element.expandText}</Text>
+        })}
+      </div>
+    </div>
+  )
+})
+
+export { Button, ButtonRedirect, ButtonHub };
