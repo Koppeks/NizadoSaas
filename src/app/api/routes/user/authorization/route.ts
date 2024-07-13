@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 
 export async function POST(request: Request) {
   try {
-    const authResult = authMiddleware(request)
+    const authResult = await authMiddleware(request)
     if(authResult instanceof NextResponse){
       return successAuth("Autorizado")
     }

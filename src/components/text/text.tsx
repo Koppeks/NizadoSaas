@@ -9,7 +9,7 @@ type TextProps<C extends React.ElementType> =
 
 type TextComponent = <C extends React.ElementType = "span">(
   props: TextProps<C>
-) => React.ReactElement | null;
+) => React.ReactElement;
 
 //@ts-expect-error -- Text crying null
 export const Text: TextComponent = forwardRef(

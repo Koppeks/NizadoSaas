@@ -1,0 +1,36 @@
+@import "../abstracts/variables";
+
+
+.container_hub_navbar{
+  height: calc(100% - $preset-standar-mesure * 6);
+  width: calc(100% - $preset-standar-mesure * 6);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: repeat(9, 1fr);
+  
+
+  //grid position
+  grid-column: 2/6;
+  grid-row: 1/2;
+
+  .icon_hamburguer{
+    grid-column: 1/2;
+  }
+  .pathname{
+    grid-column: 2/4;
+    justify-self: baseline;
+  }
+  .preset_input{
+    grid-column: 6/9;
+  }
+  .menu{
+    grid-column: 9/10;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+}

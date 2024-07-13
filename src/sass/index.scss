@@ -19,6 +19,8 @@
 @use "./containers/navbar.scss";
 @use "./containers/form_sign_up.scss";
 @use "./containers/form_footer.scss";
+@use "./containers/hub_menu.scss";
+@use "./containers/hub_navbar.scss";
 
 //Pages -- colections of containers and components
 @use "./pages/home.scss";

@@ -1,4 +1,21 @@
+@import "../abstracts/variables";
 
 .Hub_Layout{
-  background-color: red;
+  height: 100vh;
+  background-color: $color-background;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  grid-template-rows: repeat(5, 1fr);
+  align-items: center;
+  justify-items: center;
+
+  .children_content{
+    background-color: $color-white;
+    border-radius: $preset-standar-mesure;
+    box-shadow: $preset-light-box-shadow;
+    grid-column: 2/4;
+    grid-row: 2/6;
+    height: calc(100% - $preset-standar-mesure * 6);
+    width: calc(100% - $preset-standar-mesure * 6);
+  }
 }

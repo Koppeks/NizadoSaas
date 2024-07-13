@@ -3621,6 +3621,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/animejs@npm:^3":
+  version: 3.1.12
+  resolution: "@types/animejs@npm:3.1.12"
+  checksum: 10c0/21d10ed4fbaa99572e252b4d6e666b62a19089f63b13b0e9f8edf5fb0b708afc2b38c3055c52f6a4771bc71793d7a7aec83754c16d0e5606a0ad92b34778ba61
+  languageName: node
+  linkType: hard
+
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.4
   resolution: "@types/aria-query@npm:5.0.4"
@@ -4540,6 +4547,13 @@ __metadata:
     require-from-string: "npm:^2.0.2"
     uri-js: "npm:^4.4.1"
   checksum: 10c0/6fc38aa8fd4fbfaa7096ac049e48c0cb440db36b76fef2d7d5b7d92b102735670d055d412d19176c08c9d48eaa9d06661b67e59f04943dc71ab1551e0484f88c
+  languageName: node
+  linkType: hard
+
+"animejs@npm:^3.2.2":
+  version: 3.2.2
+  resolution: "animejs@npm:3.2.2"
+  checksum: 10c0/f43dfcc0c743a2774e76fbfcb16a22350da7104f413d9d1b85c48128b0c078090642809deb631e21dfa0a40651111be39d9d7f694c9c1b70d8637ce8b6d63116
   languageName: node
   linkType: hard
 
@@ -8867,6 +8881,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^5.6.3":
+  version: 5.6.3
+  resolution: "jose@npm:5.6.3"
+  checksum: 10c0/c33d8d37b86a17b1f720c667a1208248171b602375131828f645fff0d71a2fbe9b5e2a47c3fd9b7c3e41f3bf25761398150d1f158a2ee1b616ac90cf56f5e862
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -9840,17 +9861,20 @@ __metadata:
     "@storybook/nextjs": "npm:^8.1.11"
     "@storybook/react": "npm:^8.1.11"
     "@storybook/test": "npm:^8.1.11"
+    "@types/animejs": "npm:^3"
     "@types/jsonwebtoken": "npm:^9.0.6"
     "@types/node": "npm:^20"
     "@types/nodemailer": "npm:^6.4.15"
     "@types/react": "npm:^18"
     "@types/react-dom": "npm:^18"
+    animejs: "npm:^3.2.2"
     argon2: "npm:^0.40.3"
     axios: "npm:^1.7.2"
     eslint: "npm:^8"
     eslint-config-next: "npm:14.2.4"
     eslint-plugin-storybook: "npm:^0.8.0"
     formik: "npm:^2.4.6"
+    jose: "npm:^5.6.3"
     jsonwebtoken: "npm:^9.0.2"
     next: "npm:14.2.4"
     nodemailer: "npm:^6.9.14"

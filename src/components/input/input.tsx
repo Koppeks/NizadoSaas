@@ -56,3 +56,23 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
   }
 );
+
+
+export const InputSearch = forwardRef<HTMLDivElement>(({...props}, ref) => {
+  return(
+    <div ref={ref} className="preset_input">
+      <input
+      className="input"
+      type="text"
+      autoComplete="off"
+      placeholder=""
+      name="search"
+      {...props}
+      />
+      <Text as="label" className="label">
+        Search
+      </Text>
+      <i className="show_password icon_search"></i>
+    </div>
+  )
+})

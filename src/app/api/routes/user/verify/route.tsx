@@ -9,7 +9,7 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   //Recibir la verificacion
   try {
-    const authResult = authMiddleware(request);
+    const authResult = await authMiddleware(request);
     if (authResult instanceof NextResponse) {
       const unpackToken = await authResult.json();
       await prisma.model_User.update({
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   const { email } = await request.json();
   try {
     if (!email) throw { code: "S003", message: "There are some missing parameters" };
-    const authResult = authMiddleware(request);
+    const authResult = await authMiddleware(request);
     if (authResult instanceof NextResponse) {
       const user = await prisma.model_User.findUnique({
         omit: { password: true },
@@ -42,7 +42,8 @@ export async function POST(request: Request) {
       });
       if (!user) throw { code: "S001", message: "The user was not found" };
       if (user.verified) throw { code: "S005", message: "The user is already verified" };
-      const token = signToken({ email }, "1h");
+      const token = await signToken({ email }, "1h");
+      console.log(token)
       const template =
         getTemplate({ username: user.username }, token, "validateEmail") || null;
       if (template) await sendEmail(email, "Verifica tu email", template);

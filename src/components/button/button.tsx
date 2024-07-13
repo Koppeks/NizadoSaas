@@ -4,6 +4,7 @@ import { ButtonHubProps, ButtonProps } from "@/utils/types/component.types";
 import { useRouter } from "next/navigation";
 import { forwardRef, useState } from "react";
 import { Text } from "../text/text";
+import { IconMenuActive } from "../icons/icons";
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps & { type: string }>(
   ({ variant, type, children, ...props }, ref) => {
@@ -48,9 +49,9 @@ const ButtonHub = forwardRef<HTMLDivElement, ButtonHubProps>(({text, icon, expan
           <i className={icon}></i>
           <Text as="p" className="text">{text}</Text>
         </button>
-        <i className="icon">{"<"}</i>
+        <IconMenuActive active={deployOptions}/>
       </div>
-      <div className={`options_dropdown ${deployOptions && "deployed"}`}>
+      <div className={`options_dropdown ${deployOptions ? "deployed" : "not_deployed"}`}>
         {expandedElements.map((element, index)=> {
           return <Text key={index} className="option" as="p">{element.expandText}</Text>
         })}

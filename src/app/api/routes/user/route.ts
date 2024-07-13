@@ -21,7 +21,7 @@ export async function GET() {
 export async function PUT(request:Request) {
   const {userId, editProperties} = await request.json()
   try {
-    const authResult = authMiddleware(request)
+    const authResult = await authMiddleware(request)
     if(authResult instanceof NextResponse){
       const validEditProperties = ["username", "avatar", "email", "password"]
 

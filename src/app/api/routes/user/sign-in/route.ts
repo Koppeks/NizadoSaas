@@ -3,6 +3,7 @@ import { prisma } from "@/app/api/_Utils/Prisma";
 import { successRequest } from "@/app/api/_Utils/SuccessHandling"
 import { signToken } from "@/app/api/_Utils/Jwt";
 import * as argon2 from "argon2";
+import { cookies } from "next/headers";
 
 
 export async function POST(request: Request) {
@@ -15,7 +16,9 @@ export async function POST(request: Request) {
     else if (!(await argon2.verify(user.password, password))) throw ({code: "S004", message:"The password doesnt match"})
 
     const userSafe = await prisma.model_User.findUnique({omit: {password: true} ,where: {email}})
-    const newToken = signToken({userId: user.id}, "1h")
+    const newToken = await signToken({userId: user.id}, "1h")
+    
+    cookies().set("token", newToken)
 
     return successRequest("The user is now logged", {token: newToken, user: userSafe})
   }catch(error:any){
