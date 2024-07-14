@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios"
+import { useRouter } from "next/navigation"
 
 const developer = process.env.NEXT_PUBLIC_DEVELOPER_BASE_URL as string
 const production = process.env.NEXT_PUBLIC_DOMAIN as string
@@ -15,6 +16,20 @@ export const requestSignIn = async (payload: {
       url: `${endpoint}/api/routes/user/sign-in`,
       data: payload
     })
+    return response as AxiosResponse
+  } catch (error) {
+    return error as AxiosResponse
+  }
+}
+
+export const requestSignOut = async () => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: `${endpoint}/api/routes/user/sign-out`,
+    })
+
+    console.log(response)
     return response as AxiosResponse
   } catch (error) {
     return error as AxiosResponse

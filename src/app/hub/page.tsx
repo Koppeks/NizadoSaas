@@ -1,9 +1,9 @@
 
 
-export default function Dashboard() {
+export default function Hub() {
   return(
     <main>
-      
+      Hub
     </main>
   )
 }

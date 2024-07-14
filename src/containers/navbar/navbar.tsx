@@ -6,18 +6,24 @@ import { Iconic } from "../../components/iconic/iconic";
 import { NizadoLogo } from "../../components/nizado_logo/nizado_logo";
 import { ExpandMenu } from "@/components/expand_menu/expand_menu";
 import useStore from "@/redux/UseStore";
+import { requestSignOut } from "@/utils/api_requests/forms";
+import { useRouter } from "next/navigation";
 
 export const Navbar = forwardRef<HTMLDivElement>(
   ({}, ref) => {
-    const { removeToken, checkTokenStatus } = useStore();
-    const subscriptionToken = useStore.subscribe((state) => state.checkTokenStatus)
-    const [userLog, setUserLog] = useState(false)
+    
+    const user = useStore.getState().user
+
+    const [userLog, setUserLog] = useState({} || null)
     const [isLoading, setIsLoading] = useState(true)
 
+    const router = useRouter()
+
     useEffect(()=> {
-      setUserLog(checkTokenStatus())
+      setUserLog(user)
+      console.log(user)
       setIsLoading(false)
-    },[subscriptionToken])
+    },[user])
 
     if (isLoading) {
       return null; // Devuelve null mientras se verifica el estado del token
@@ -35,6 +41,7 @@ export const Navbar = forwardRef<HTMLDivElement>(
                 { text: "Calendar", href: "direction" },
                 { text: "Event managment", href: "direction" },
                 { text: "Daylis", href: "direction" },
+                { text: "Watch the demo", href: "direction" },
               ]}
             />
             <ExpandMenu
@@ -53,7 +60,6 @@ export const Navbar = forwardRef<HTMLDivElement>(
               elements={[
                 { text: "Check our plans", href: "direction" },
                 { text: "Buy from us", href: "direction" },
-                { text: "Watch the demo", href: "direction" },
               ]}
             />
             <ExpandMenu
@@ -71,7 +77,7 @@ export const Navbar = forwardRef<HTMLDivElement>(
             <>
               <Iconic icon="icon_user" redirectTo="/hub" />
               <Iconic icon="icon_bell" />
-              <Iconic icon="icon_signout" customFunction={() => removeToken()} />
+              <Iconic icon="icon_signout" customFunction={async ()=> await requestSignOut().then(() => router.push("/sign-in"))}/>
             </>
           ) : (
             <>

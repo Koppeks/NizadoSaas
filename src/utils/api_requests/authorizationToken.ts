@@ -9,6 +9,7 @@ export const checkTokenAuthorization = async (
   token: string
 ): Promise<AxiosResponse> => {
   try {
+    console.log(token)
     const response = await axios({
       method: "post",
       url: `${endpoint}/api/routes/user/authorization`,

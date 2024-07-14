@@ -1,6 +1,6 @@
 import {create, StateCreator} from "zustand"
 import { devtools, persist } from "zustand/middleware"
-import { TokenSlice, TokenStatus, User, UserSlice } from "./redux.types"
+import { User, UserSlice } from "./redux.types"
 
 
 const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
@@ -9,29 +9,11 @@ const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
   removeUser: () => set({user: null})
 })
 
-
-const initialStateToken: TokenStatus = {
-  token: null,
-  valid: false
-}
-
-const createTokenSlice: StateCreator<TokenSlice> = (set, get, store) => ({
-  status: initialStateToken,
-  addToken: (status: TokenStatus) => set({status}),
-  getToken: () => get().status.token,
-  checkTokenStatus: () => get().status.valid,
-  removeToken: () => {
-    set({status: initialStateToken})
-    useStore.getState().removeUser()
-  }
-})
-
-const useStore = create<UserSlice & TokenSlice>()(
+const useStore = create<UserSlice>()(
   devtools(
     persist(
       (set, get, store) => ({
-        ...createUserSlice(set, get, store),
-        ...createTokenSlice(set, get, store)
+        ...createUserSlice(set, get, store)
       }), {name: "user-persist-storage"}
     ),{name: "userStore"}
   )

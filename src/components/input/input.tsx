@@ -1,3 +1,4 @@
+"use client"
 
 import { InputProps } from "@/utils/types/component.types";
 import Image from "next/image";

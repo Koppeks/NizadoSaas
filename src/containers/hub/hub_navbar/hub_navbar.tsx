@@ -3,15 +3,19 @@
 import { Iconic } from "@/components/iconic/iconic";
 import { InputSearch } from "@/components/input/input";
 import { Text } from "@/components/text/text";
-import { usePathname } from "next/navigation";
+import { requestSignOut } from "@/utils/api_requests/forms";
+import { usePathname, useRouter } from "next/navigation";
 import { forwardRef } from "react";
 
 
 export const HubNavbar = forwardRef<HTMLDivElement> (({...props}, ref) => {
 
   const pathname = usePathname()
+  const router = useRouter()
 
-  console.log(pathname)
+  const handleSignOut = async () => {
+    await requestSignOut().then(() => router.push("/sign-in")) 
+  }
 
   return(
     <div className="container_hub_navbar">
@@ -20,7 +24,7 @@ export const HubNavbar = forwardRef<HTMLDivElement> (({...props}, ref) => {
       <InputSearch />
       <div className="menu">
         <Iconic icon="icon_user"/>
-        <Iconic icon="icon_gear"/>
+        <Iconic icon="icon_signout" customFunction={() => handleSignOut()}/>
       </div>
     </div>
   )

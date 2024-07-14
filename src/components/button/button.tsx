@@ -42,6 +42,8 @@ const ButtonHub = forwardRef<HTMLDivElement, ButtonHubProps>(({text, icon, expan
 
   const [deployOptions, setDeployOptions] = useState(false)
 
+  const router = useRouter()
+
   return(
     <div ref={ref} className="preset_button_hub">
       <div className="content" onClick={() => setDeployOptions(!deployOptions)}>
@@ -53,7 +55,7 @@ const ButtonHub = forwardRef<HTMLDivElement, ButtonHubProps>(({text, icon, expan
       </div>
       <div className={`options_dropdown ${deployOptions ? "deployed" : "not_deployed"}`}>
         {expandedElements.map((element, index)=> {
-          return <Text key={index} className="option" as="p">{element.expandText}</Text>
+          return <Text onClick={() => router.push(`/hub${element.redirectTo}`)} key={index} className="option" as="p">{element.expandText}</Text>
         })}
       </div>
     </div>

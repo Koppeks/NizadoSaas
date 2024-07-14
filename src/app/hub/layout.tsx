@@ -1,5 +1,5 @@
-import { HubMenu } from "@/containers/hub_menu/hub_menu";
-import { HubNavbar } from "@/containers/hub_navbar/hub_navbar";
+import { HubMenu } from "@/containers/hub/hub_menu/hub_menu";
+import { HubNavbar } from "@/containers/hub/hub_navbar/hub_navbar";
 
 export default function HubLayout({
   children,

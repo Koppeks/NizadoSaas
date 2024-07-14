@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { HubMenu } from "./hub_menu";
+import { HubNavbar } from "./hub_navbar";
 
 const meta: Meta = {
-  title: "Containers/Hub menu",
-  component: HubMenu,
+  title: "Containers/Hub/Navbar",
+  component: HubNavbar,
   parameters:{
     layout: "fullscreen"
   },

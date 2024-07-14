@@ -11,9 +11,8 @@ import { forwardRef } from "react";
 
 export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
 
-  const {addUser, addToken} = useStore()
-
   const router = useRouter()
+  const {addUser} = useStore()
 
   return (
     <Formik
@@ -28,6 +27,7 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
       ): Promise<void | Promise<any>> {
         
         const requestData = { email: values.email, password: values.password };
+
         const response = await requestSignIn(requestData)
 
         if(response.status !== 200){
@@ -35,15 +35,8 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
           return null
         } 
 
-        const tokenStatus = {
-          token: response.data.payload.token,
-          valid: true
-        }
-
+        router.push("/hub")
         addUser(response.data.payload.user)
-        addToken(tokenStatus)
-
-        router.push("/")
 
       }}
     >
@@ -89,4 +82,5 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
       )}
     </Formik>
   );
+
 });

@@ -1,5 +1,7 @@
 @import "../fonts";
+@import "../abstracts/variables";
 
 html{
-  font-family: $exo-2
+  font-family: $exo-2;
+  background-color: $color-background;
 }

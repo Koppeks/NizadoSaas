@@ -1,11 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { HubNavbar } from "./hub_navbar";
+import { CalendarNavbar } from "./calendar_navbar";
 
 const meta: Meta = {
-  title: "Containers/Hub menu",
-  component: HubNavbar,
+  title: "Containers/Hub/Calendar/Navbar",
+  component: CalendarNavbar,
   parameters:{
-    layout: "fullscreen"
+    layout: "fullscreen",
+    nextjs:{
+      appDirectory: true
+    }
   },
   tags: ["autodocs"]
 }
