@@ -40,4 +40,10 @@ const forgotPasswordSchema = yup.object({
     .required("This field is required")
 });
 
-export { signInSchema, signUpSchema, forgotPasswordSchema };
+const calendarSchema = yup.object({
+  title: yup.string().required("This field is required"),
+  description: yup.string().max(2000, "The description its to large - 2000")
+})
+
+
+export { signInSchema, signUpSchema, forgotPasswordSchema, calendarSchema };

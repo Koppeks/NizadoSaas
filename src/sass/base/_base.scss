@@ -4,4 +4,54 @@
 html{
   font-family: $exo-2;
   background-color: $color-background;
+  color: $color-font-normal;
+}
+
+textarea{
+  font-family: $exo-2;
+  font-size: 1rem;
+
+  &::-webkit-resizer{
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-bottom: 100px solid $color-primary;
+
+    &:active{
+      border-bottom: 100px solid red;
+    }
+  }
+
+  &::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: #DFE9EB;
+    
+  }
+  
+  &::-webkit-scrollbar-track:hover {
+    background-color: #B8C0C2;
+  }
+  
+  &::-webkit-scrollbar-track:active {
+    background-color: #B8C0C2;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: $color-primary-light;
+    border: 1px solid #FFFFFF;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: $color-primary;
+  }
+  
+  &::-webkit-scrollbar-thumb:active {
+    background-color: $color-secondary;
+  }
+
 }

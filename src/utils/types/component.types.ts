@@ -50,16 +50,6 @@ export type PolymorphicComponentPropsWithRef<
 // Text dynamic types end
 
 
-export type InputProps = ComponentProps<"input"> & {
-  type: string,
-  label?: string,
-  name: string,
-  value: FieldInputProps<any>["value"],
-  error?: FormikErrors<string>,
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleBlur: (e: React.ChangeEvent<HTMLInputElement>) => void,
-}
-
 export type IconicProps = {
   text? : string,
   redirectTo?: string,

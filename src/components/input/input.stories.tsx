@@ -4,7 +4,7 @@ import { Input } from './input';
 
 
 const meta: Meta<typeof Input> = {
-  title: 'Components/Input',
+  title: 'Components/Input/common',
   component: Input,
   parameters: {
     layout: 'centered',
@@ -33,6 +33,12 @@ export const Number: Story = {
   args: {
     type: "number",
     label: "Numero"
+  },
+};
+export const Description: Story = {
+  args: {
+    type: "text",
+    label: "Descripcion"
   },
 };
 export const Date: Story = {

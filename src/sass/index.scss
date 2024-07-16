@@ -7,8 +7,9 @@
 @use "./icons/icons.scss";
 
 //Components -- base building blocks
+@use "./components/input/input.scss";
+@use "./components/input/textarea.scss";
 @use "./components/button.scss";
-@use "./components/input.scss";
 @use "./components/verifyUserEmail.scss";
 @use "./components/iconic.scss";
 @use "./components/expand_menu.scss";
@@ -26,6 +27,7 @@
 @use "./pages/home.scss";
 @use "./pages/main_forms.scss";
 @use "./pages/loading.scss";
+@use "./pages/calendar_create_form_children.scss";
 
 // Layouts -- Full layout of endpoint
 @use "./layouts/hub.scss";

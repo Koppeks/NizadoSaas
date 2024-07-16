@@ -1,9 +1,10 @@
 "use client"
 
-import { InputProps } from "@/utils/types/component.types";
+
 import Image from "next/image";
 import { forwardRef, useState } from "react";
 import { Text } from "../text/text";
+import { InputProps } from "@/utils/types/inputs.types";
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, type, name, value, error,handleChange, handleBlur, ...props }, ref) => {
