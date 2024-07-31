@@ -27,16 +27,16 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
       ): Promise<void | Promise<any>> {
         
         const requestData = { email: values.email, password: values.password };
-
         const response = await requestSignIn(requestData)
-
         if(response.status !== 200){
           console.log("No buena response")
           return null
         } 
-
         router.push("/hub")
-        addUser(response.data.payload.user)
+        console.log(response)
+ 
+        //Check signup axios error
+        // addUser(response.data.payload.user)
 
       }}
     >

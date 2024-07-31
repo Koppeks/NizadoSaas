@@ -17,6 +17,7 @@ export async function verifyToken(token:string) {
     return payload;
   } catch (error: any) {
     if (error.code === 'ERR_JWT_EXPIRED') return 'TokenExpired';
+    else if(error.code === 'ERR_JWS_SIGNATURE_VERIFICATION_FAILED') return 'TokenSignatureFailed';
     return null;
   }
 }

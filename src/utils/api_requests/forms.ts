@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios"
-import { useRouter } from "next/navigation"
+import axios, { AxiosError, AxiosResponse } from "axios"
 
 const developer = process.env.NEXT_PUBLIC_DEVELOPER_BASE_URL as string
 const production = process.env.NEXT_PUBLIC_DOMAIN as string
@@ -9,7 +8,7 @@ let endpoint = developer !== "" ? developer : production
 export const requestSignIn = async (payload: {
   email: string,
   password: string
-}): Promise<AxiosResponse> => {
+}): Promise<AxiosResponse | AxiosError> => {
   try {
     const response = await axios({
       method: "post",
@@ -18,11 +17,11 @@ export const requestSignIn = async (payload: {
     })
     return response as AxiosResponse
   } catch (error) {
-    return error as AxiosResponse
+    return error as AxiosError
   }
 }
 
-export const requestSignOut = async () => {
+export const requestSignOut = async (): Promise<AxiosResponse | AxiosError> => {
   try {
     const response = await axios({
       method: "get",
@@ -32,6 +31,25 @@ export const requestSignOut = async () => {
     console.log(response)
     return response as AxiosResponse
   } catch (error) {
-    return error as AxiosResponse
+    return error as AxiosError
+  }
+}
+
+export const requestSignUp = async (payload:{
+  username: string,
+  email: string,
+  password:string,
+  repeatPassword: string
+}): Promise<AxiosResponse | AxiosError> => {
+  try {
+    const response = await axios({
+      method: "post",
+      url: `${endpoint}/api/routes/user/sign-up`,
+      data: payload
+    })
+    return response as AxiosResponse
+  } catch (error) {
+    console.log(error)
+    return error as AxiosError
   }
 }

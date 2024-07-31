@@ -38,9 +38,6 @@
     color: $color-font-light;
   }
 
-  .input:focus, .input:not(:placeholder-shown){
-    background-color: $color-background;
-  }
 
   .show_password{
     cursor: pointer;

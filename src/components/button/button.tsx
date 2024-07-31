@@ -23,8 +23,9 @@ const ButtonRedirect = forwardRef<
   const router = useRouter();
 
   const handleRedirect = () => {
-    if (redirectTo) router.push(redirectTo);
-    console.log("Nel");
+    if (redirectTo) {
+      router.push(redirectTo);
+    }
   };
 
   return (

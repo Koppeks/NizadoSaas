@@ -22,7 +22,7 @@ model Model_User{
   username String
   password String
   avatar String @default("image")
-  subscription subscription_type
+  subscription subscription_type @default(free)
   verified Boolean @default(false)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt

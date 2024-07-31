@@ -120,12 +120,13 @@ export async function internalServerError(message: string, error: any) {
   );
 }
 
-/////Prisma error codes
+/////Prisma exclusive error codes
 
 export async function conflictPrismaError(message: string) {
   return new Response(
     JSON.stringify({
-      errorMessage: message,
+      prismaError: message,
+      prismaCode: "P2002"
     }),
     {
       status: conflictStatus,
@@ -133,11 +134,11 @@ export async function conflictPrismaError(message: string) {
     }
   );
 }
-export async function recordUpdatePrismaError(message:string , error: string ) {
+export async function recordUpdatePrismaError(message:string) {
   return new Response(
     JSON.stringify({
-      errorMessage: message,
-      error: error
+      PrismaError: message,
+      prismaCode: "P2025"
     }),
     {
       status: notFoundStatus,
@@ -146,9 +147,9 @@ export async function recordUpdatePrismaError(message:string , error: string ) {
   );
 }
 
-export async function errorHandler(error: {code: string, message: string}) {
-  console.log(error)
+export async function errorHandler(error: { code: string; message: string; }) {
   console.log("Error handler log")
+    //App error handler
   if(error.code == "S001") return contentWasNotFoundError(error.message)
   if(error.code == "S002") return userUnautorizedError(error.message)
   if(error.code == "S003") return missingParametersError(error.message)
@@ -156,5 +157,8 @@ export async function errorHandler(error: {code: string, message: string}) {
   if(error.code == "S005") return redundantError(error.message)
   if(error.code == "S006") return expiredTokenError(error.message)
   if(error.code == "S007") return bearerTokenError(error.message)
+    //Prisma error handler
+  if(error.code == "P2002") return conflictPrismaError(error.message)
+  if(error.code == "P2025") return recordUpdatePrismaError(error.message)
   return internalServerError("Internal server error", error)
 }

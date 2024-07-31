@@ -2,11 +2,17 @@
 
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
+import { Password } from "@/components/input/input.stories";
+import { requestSignUp } from "@/utils/api_requests/forms";
 import { signUpSchema } from "@/utils/schemas/schemas";
 import { Formik, FormikHelpers, FormikValues } from "formik";
+import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
 
 export const FormSignUp = forwardRef<HTMLElement>(({ ...props }, ref) => {
+
+  const router = useRouter()
+
   return (
     <Formik
       initialValues={{
@@ -16,14 +22,33 @@ export const FormSignUp = forwardRef<HTMLElement>(({ ...props }, ref) => {
         repeatPassword: "",
       }}
       validationSchema={signUpSchema}
-      onSubmit={function (
+      onSubmit={async function (
         values: FormikValues,
         formikHelpers: FormikHelpers<FormikValues>
-      ): void | Promise<any> {
-        console.log(values);
-        formikHelpers.resetForm();
+      ): Promise<void | Promise<any>> {
+        const userValuesSignUp = {
+          username: values.name,
+          email: values.email,
+          password: values.password,
+          repeatPassword: values.repeatPassword
+        }
+        
+        try {
+          const response = await requestSignUp(userValuesSignUp)
 
-        throw new Error("Function not implemented.");
+          if(response.status !== 201){
+            //Ideal to make a toast with denial user creation
+            throw new Error("Error at user creation");
+          }
+          setTimeout(() => {
+            // router.push("/sign-in")
+            console.log("You will be redirected in 5 seconds")
+          }, 5000)
+          //Ideal to make a toast with confirm user creation
+          throw new Error("Function not implemented.");
+        } catch (error) {
+          console.log(error)
+        }
       }}
     >
       {({ handleChange, handleBlur, handleSubmit, errors, touched, values }) => (
