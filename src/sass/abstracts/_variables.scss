@@ -11,6 +11,7 @@ $preset-expand-box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.3), -10px -10px 10px #
 $preset-standar-mesure: 6px;
 
 $transition: .3s all ease-in-out;
+$transition-bounce: all 400ms cubic-bezier(.47,1.64,.41,.8);;
 
 $color-font-normal: #333;
 $color-font-light: #777;
@@ -20,6 +21,7 @@ $color-primary: #FEBB56;
 $color-primary-light: #f8c374;
 $color-secondary: #D68916;
 $color-gray: #ececec;
+$color-disabled: #a7a7a7;
 $color-dark: #1D1D1D;
 $color-clear: #F1F1F1;
 $color-white: #FFF;

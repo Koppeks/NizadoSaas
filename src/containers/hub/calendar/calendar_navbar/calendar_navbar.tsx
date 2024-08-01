@@ -1,4 +1,4 @@
-import { Button, ButtonRedirect } from "@/components/button/button";
+import { ButtonRedirect } from "@/components/button/button";
 import { InputSearch } from "@/components/input/input";
 import { Text } from "@/components/text/text";
 import { forwardRef } from "react";

@@ -2,8 +2,7 @@
 
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
-import { Password } from "@/components/input/input.stories";
-import { requestSignUp } from "@/utils/api_requests/forms";
+import { requestSignUp } from "@/utils/api_requests/userForms";
 import { signUpSchema } from "@/utils/schemas/schemas";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import { useRouter } from "next/navigation";
@@ -41,7 +40,7 @@ export const FormSignUp = forwardRef<HTMLElement>(({ ...props }, ref) => {
             throw new Error("Error at user creation");
           }
           setTimeout(() => {
-            // router.push("/sign-in")
+            router.push("/sign-in")
             console.log("You will be redirected in 5 seconds")
           }, 5000)
           //Ideal to make a toast with confirm user creation

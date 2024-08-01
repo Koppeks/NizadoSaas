@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     const authResult = await authMiddleware(request);
     if (authResult instanceof NextResponse) {
       const unpackToken = await authResult.json();
-      await prisma.model_User.update({
+      await prisma.user.update({
         omit: {
           password: true,
         },
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
     if (!email) throw { code: "S003", message: "There are some missing parameters" };
     const authResult = await authMiddleware(request);
     if (authResult instanceof NextResponse) {
-      const user = await prisma.model_User.findUnique({
+      const user = await prisma.user.findUnique({
         omit: { password: true },
         where: { email },
       });

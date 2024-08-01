@@ -6,7 +6,7 @@ import { Iconic } from "../../components/iconic/iconic";
 import { NizadoLogo } from "../../components/nizado_logo/nizado_logo";
 import { ExpandMenu } from "@/components/expand_menu/expand_menu";
 import useStore from "@/redux/UseStore";
-import { requestSignOut } from "@/utils/api_requests/forms";
+import { requestSignOut } from "@/utils/api_requests/userForms";
 import { useRouter } from "next/navigation";
 
 export const Navbar = forwardRef<HTMLDivElement>(

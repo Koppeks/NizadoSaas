@@ -8,7 +8,7 @@ import * as argon2 from "argon2"
 
 export async function GET() {
   try {
-    const users = await prisma.model_User.findMany();
+    const users = await prisma.user.findMany();
     if (users.length > 0)
       return successCreated("Usuarios enviados correctamente", users)
     else
@@ -38,7 +38,7 @@ export async function PUT(request:Request) {
         checkIfCorrectProperties.password = await argon2.hash(checkIfCorrectProperties.password)
       }
 
-      const updateUser = await prisma.model_User.update({
+      const updateUser = await prisma.user.update({
         omit:{
           password: true
         },

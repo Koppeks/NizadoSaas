@@ -3,8 +3,9 @@
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
 import useStore from "@/redux/UseStore";
-import { requestSignIn } from "@/utils/api_requests/forms";
+import { requestSignIn } from "@/utils/api_requests/userForms";
 import { signInSchema } from "@/utils/schemas/schemas";
+import { AxiosResponse } from "axios";
 import { Formik, FormikHelpers, FormikValues } from "formik";
 import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
@@ -27,17 +28,13 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
       ): Promise<void | Promise<any>> {
         
         const requestData = { email: values.email, password: values.password };
-        const response = await requestSignIn(requestData)
+        const response = await requestSignIn(requestData) as AxiosResponse
         if(response.status !== 200){
           console.log("No buena response")
           return null
         } 
+        addUser(response.data.payload.user)
         router.push("/hub")
-        console.log(response)
- 
-        //Check signup axios error
-        // addUser(response.data.payload.user)
-
       }}
     >
       {({

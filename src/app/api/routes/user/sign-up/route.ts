@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     if(body.password !== body.repeatPassword) throw ({code: "S004", message:"The password doesnt match"})
     const hashArgonPassword = await argon2.hash(body.password)
 
-    const newUser = await prisma.model_User.create({
+    const newUser = await prisma.user.create({
       omit:{
         password: true
       },

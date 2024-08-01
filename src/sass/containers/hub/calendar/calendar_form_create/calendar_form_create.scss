@@ -1,0 +1,64 @@
+@import "../../../../abstracts/variables";
+
+.Calendar_New_Form_Container{
+    padding: $preset-standar-mesure*4  $preset-standar-mesure;
+    display: flex;
+    flex-direction: column;
+    gap: $preset-standar-mesure*6;
+    width: 40%;
+    height: 100%;
+    overflow-y: auto;
+
+    .disable_days_container{
+        box-shadow: $preset-light-box-shadow;
+        padding: $preset-standar-mesure;
+
+        h4{
+            padding: $preset-standar-mesure * 2;
+        }
+        
+        .days_box{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: $preset-standar-mesure;
+            
+            .checkbox-wrapper{
+                cursor: pointer;
+                padding: $preset-standar-mesure;
+                flex: 0 0 40%;
+                display: flex;
+                gap: $preset-standar-mesure;
+                transition: $transition-bounce;
+                position: relative;
+                
+                .checkbox{
+                    width: 30px;
+                    position: relative;
+                    transition: $transition-bounce;
+                }
+
+                &::before{
+                    // background-color: saddlebrown;
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                }
+
+            }
+            .selected{
+                background-color: $color-disabled;
+                border-radius: $preset-standar-mesure;
+                
+                .checkbox{
+                    width: 0px;
+                    margin-right: 20px;
+                    position: relative;
+                }
+            }
+        }
+    }
+}

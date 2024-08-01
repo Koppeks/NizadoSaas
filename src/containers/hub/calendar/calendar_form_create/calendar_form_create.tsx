@@ -2,35 +2,50 @@
 
 import { Button } from "@/components/button/button";
 import { Input } from "@/components/input/input";
-import { SelectCheck } from "@/components/input/select";
 import { InputTextarea } from "@/components/input/textarea";
+import { Text } from "@/components/text/text";
+import useStore from "@/redux/UseStore";
+import { createCalendar } from "@/utils/api_requests/calendarForms";
 import { calendarSchema } from "@/utils/schemas/schemas";
-import { Formik, FormikHelpers, FormikValues } from "formik";
+import { newCalendarCreation } from "@/utils/types/calendar.types";
+import { Field, Formik, FormikHelpers } from "formik";
 import { forwardRef } from "react";
 
 export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) => {
 
-  const options = [
-    { id: '1', label: 'Option 1', value: 'option1', checked: false },
-    { id: '2', label: 'Option 2', value: 'option2', checked: true },
-    // Add more options as needed
+  const daysOfWeek = [
+    { label: 'Monday', value: 'Monday' },
+    { label: 'Tuesday', value: 'Tuesday' },
+    { label: 'Wednesday', value: 'Wednesday' },
+    { label: 'Thursday', value: 'Thursday' },
+    { label: 'Friday', value: 'Friday' },
+    { label: 'Saturday', value: 'Saturday' },
+    { label: 'Sunday', value: 'Sunday' },
   ];
+
+  const user = useStore.getState().user?.id
 
   return (
     <Formik
       initialValues={{
         title: "",
         description: "",
-        options
+        bannedDays: [],
       }}
       validationSchema={calendarSchema}
       onSubmit={async function (
-        values: FormikValues,
-        formikHelpers: FormikHelpers<FormikValues>
+        values: newCalendarCreation,
+        formikHelpers: FormikHelpers<newCalendarCreation>
       ): Promise<void | Promise<any>> {
         
         //Logica
-        console.log(values)
+        const newCalendarValues = {
+          userId: user,
+          ...values
+        }
+
+        const result = await createCalendar(newCalendarValues)
+        console.log(result)
 
       }}
     >
@@ -42,7 +57,7 @@ export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) =>
         touched,
         values,
       }) => (
-        <form className="Form_Sign_Up_Container" onSubmit={handleSubmit}>
+        <form className="Calendar_New_Form_Container" onSubmit={handleSubmit}>
           <Input
             type="text"
             label="Title"
@@ -54,7 +69,7 @@ export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) =>
                 ? errors.title
                 : ""
             }
-            value={values.email}
+            value={values.title}
           />
           <InputTextarea
             label="Description"
@@ -66,8 +81,17 @@ export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) =>
               : ""}
             value={values.description}/>
 
-          <SelectCheck options={options} onChange={handleChange} />;
-
+          <div className="disable_days_container">
+            <Text as="h4">Disable days</Text>
+            <div className="days_box">
+            {daysOfWeek.map((day) => (
+                <label className={`checkbox-wrapper ${values.bannedDays?.includes(day.value) ? 'selected' : ''}`} key={day.value}>
+                  <Field className="checkbox" type="checkbox" name="bannedDays" value={day.value} />
+                  <Text as="p">{day.label}</Text>
+                </label>
+            ))}
+            </div>
+          </div>
           <Button variant="primary" type="submit">
             Create calendar
           </Button>

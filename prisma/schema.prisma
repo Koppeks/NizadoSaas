@@ -16,7 +16,7 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Model_User{
+model User{
   id String @id @default(uuid())
   email String @unique
   username String
@@ -38,10 +38,21 @@ enum subscription_type {
   admin
 }
 
-model Model_Calendar {
+enum Days {
+  Monday
+  Tuesday
+  Wednesday
+  Thursday
+  Friday
+  Saturday
+  Sunday
+}
+
+model Calendar {
   id String @id @default(uuid())
   title String
   description String?
+  bannedDays Days[]
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -54,6 +65,6 @@ model User_Calendar {
   @@id([userId, calendarId])
 
   //Relation fields
-  user Model_User @relation(fields: [userId], references: [id])
-  calendar Model_Calendar @relation(fields: [calendarId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  calendar Calendar @relation(fields: [calendarId], references: [id])
 }

@@ -149,6 +149,7 @@ export async function recordUpdatePrismaError(message:string) {
 
 export async function errorHandler(error: { code: string; message: string; }) {
   console.log("Error handler log")
+  console.log(error)
     //App error handler
   if(error.code == "S001") return contentWasNotFoundError(error.message)
   if(error.code == "S002") return userUnautorizedError(error.message)

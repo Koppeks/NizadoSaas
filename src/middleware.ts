@@ -11,16 +11,19 @@ export async function middleware(request: NextRequest) {
   try {
     if (!tokenCookie || tokenCookie.value == null) {
       if(!goodEndpoint){
-        return NextResponse.redirect(new URL("/sign-in", request.url));
+        return NextResponse.redirect(new URL("/", request.url));
       }
     }else{
       const verified = await verifyToken(tokenCookie.value)
       if(verified == "TokenExpired" || verified == "TokenSignatureFailed") {
-        return NextResponse.redirect(new URL("/sign-in", request.url));
+        if(!goodEndpoint){
+          return NextResponse.redirect(new URL("/sign-in", request.url));
+        }
       } else if(goodEndpoint) return NextResponse.redirect(new URL("/hub", request.url));
     }
     return NextResponse.next();
   } catch (error) {
+    console.log(error)
     return NextResponse.redirect(new URL("/", request.url));
   }
 }

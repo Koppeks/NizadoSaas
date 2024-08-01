@@ -3,7 +3,7 @@
 import { Iconic } from "@/components/iconic/iconic";
 import { InputSearch } from "@/components/input/input";
 import { Text } from "@/components/text/text";
-import { requestSignOut } from "@/utils/api_requests/forms";
+import { requestSignOut } from "@/utils/api_requests/userForms";
 import { usePathname, useRouter } from "next/navigation";
 import { forwardRef } from "react";
 

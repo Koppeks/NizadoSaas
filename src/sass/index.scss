@@ -22,6 +22,7 @@
 @use "./containers/form_footer.scss";
 @use "./containers/hub_menu.scss";
 @use "./containers/hub_navbar.scss";
+@use "./containers/hub/calendar/calendar_form_create/calendar_form_create.scss";
 
 //Pages -- colections of containers and components
 @use "./pages/home.scss";
