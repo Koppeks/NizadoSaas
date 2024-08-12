@@ -1,6 +1,6 @@
 import {create, StateCreator} from "zustand"
 import { devtools, persist } from "zustand/middleware"
-import { User, UserSlice } from "./redux.types"
+import { Calendar, CalendarSlice, User, UserSlice } from "./redux.types"
 
 
 const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
@@ -9,20 +9,31 @@ const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
   removeUser: () => set({user: null})
 })
 
-const useStore = create<UserSlice>()(
+const createCalendarSlice: StateCreator<CalendarSlice> = (set,get,store) => ({
+  userCalendars: [],
+  addCalendar: (newCalendar: Calendar) =>{
+    console.log(newCalendar)
+    set(state => ({
+      userCalendars: [...state.userCalendars, newCalendar]
+    })) 
+  }
+})
+
+const useStore = create<UserSlice & CalendarSlice >()(
   devtools(
     persist(
       (set, get, store) => ({
-        ...createUserSlice(set, get, store)
+        ...createUserSlice(set, get, store),
+        ...createCalendarSlice(set, get, store)
       }), {name: "user-persist-storage"}
-    ),{name: "userStore"}
+    ),{name: "globalStore"}
   )
 )
 
 // Delete old storage
 // const clearOldState = () => {
 //   localStorage.removeItem('user-persist-storage');
-//   localStorage.removeItem('userStore');
+//   localStorage.removeItem('globalStore');
 // };
 
 // clearOldState();

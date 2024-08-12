@@ -8,6 +8,7 @@ import useStore from "@/redux/UseStore";
 import { createCalendar } from "@/utils/api_requests/calendarForms";
 import { calendarSchema } from "@/utils/schemas/schemas";
 import { newCalendarCreation } from "@/utils/types/calendar.types";
+import { AxiosResponse } from "axios";
 import { Field, Formik, FormikHelpers } from "formik";
 import { forwardRef } from "react";
 
@@ -24,6 +25,8 @@ export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) =>
   ];
 
   const user = useStore.getState().user?.id
+
+  const addNewCaledar = useStore().addCalendar
 
   return (
     <Formik
@@ -44,8 +47,13 @@ export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) =>
           ...values
         }
 
-        const result = await createCalendar(newCalendarValues)
-        console.log(result)
+        const result = await createCalendar(newCalendarValues) as AxiosResponse
+
+        if(result.status !== 201) {
+          throw new Error("eeee se rompio")
+        }
+        addNewCaledar(result.data.payload)
+        console.log(result.data.payload)
 
       }}
     >

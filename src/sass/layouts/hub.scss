@@ -14,7 +14,9 @@
     box-shadow: $preset-light-box-shadow;
     grid-column: 2/4;
     grid-row: 2/6;
-    height: calc(100% - $preset-standar-mesure * 6);
-    width: calc(100% - $preset-standar-mesure * 6);
+    margin-bottom: $preset-standar-mesure*3;
+    margin-right: $preset-standar-mesure*3;
+    height: calc(100% - $preset-standar-mesure * 3);
+    width: calc(100% - $preset-standar-mesure * 3);
   }
 }

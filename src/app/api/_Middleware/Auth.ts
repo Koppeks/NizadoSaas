@@ -3,6 +3,7 @@ import { verifyToken } from "../_Utils/Jwt"
 
 export async function authMiddleware(request:Request) {
   const authRequest = request.headers.get("Authorization")
+  console.log(authRequest)
   if(authRequest == null) return ({code: "S003", message: "Not authorized"})
   const token = authRequest.split(' ')[1]
   if(token == null) return({code: "S007", message: "Bearer contains an error"})
