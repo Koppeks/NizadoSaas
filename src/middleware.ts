@@ -14,7 +14,6 @@ export async function middleware(request: NextRequest) {
       if(!goodEndpoint){
         return NextResponse.redirect(new URL("/?expired=true", request.url));
       }
-      console.log("Token null")
     }else{
       const verified = await verifyToken(tokenCookie.value)
       if(verified == "TokenExpired" || verified == "TokenSignatureFailed") {

@@ -18,7 +18,6 @@ export default function ForgotPassword() {
   
     useEffect(()=> {
       if(iterateUseEffect.current){
-        console.log("useEffect home")
         if(expired) useStore.persist.clearStorage()
       }
       return () => {iterateUseEffect.current = true}
