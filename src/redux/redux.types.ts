@@ -29,6 +29,7 @@ export type Calendar = {
 export interface CalendarSlice {
   userCalendars: Calendar[],
   addCalendar: (calendar:Calendar) => void,
+  addCalendars: (newCalendars:Calendar[]) => void,
   // removeCalendar: (calendarId:string) => void,
   // getCalendar: (calendarId: string) => Calendar,
   // editCalendar: (calendarId: string, editFields: object) => void

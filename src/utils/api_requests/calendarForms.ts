@@ -19,3 +19,17 @@ export const createCalendar = async (payload:newCalendarCreation): Promise<Axios
         return error as AxiosError
     }
 }
+
+export const getAllUserCalendars = async (payload: {userId: string}): Promise<AxiosResponse | AxiosError> => {
+    console.log(payload)
+    try {
+        const response = await axios({
+            method: "GET",
+            url: `${endpoint}/api/routes/user/calendar`,
+            data:payload
+        })
+        return response as AxiosResponse
+    } catch (error) {
+        return error as AxiosError
+    }
+}

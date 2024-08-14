@@ -7,7 +7,6 @@ const header = {
  * throw codes accepted:
  * 
  * S001 : Content not found
- * S002 : The content was not found
  * S003 : Not authorized
  * S004 : Wrong parameters
  * S005 : Redundant
@@ -152,7 +151,7 @@ export async function errorHandler(error: { code: string; message: string; }) {
   console.log(error)
     //App error handler
   if(error.code == "S001") return contentWasNotFoundError(error.message)
-  if(error.code == "S002") return userUnautorizedError(error.message)
+  
   if(error.code == "S003") return missingParametersError(error.message)
   if(error.code == "S004") return wrongParametersError(error.message)
   if(error.code == "S005") return redundantError(error.message)

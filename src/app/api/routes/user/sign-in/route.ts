@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     else if (!(await argon2.verify(user.password, password))) throw ({code: "S004", message:"The password doesnt match"})
 
     const userSafe = await prisma.user.findUnique({omit: {password: true} ,where: {email}})
-    const newToken = await signToken({userId: user.id, userEmail: user.email}, "1d")
+    const newToken = await signToken({userId: user.id}, "1d")
     
     cookies().set("token", newToken)
 

@@ -12,10 +12,19 @@ const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
 const createCalendarSlice: StateCreator<CalendarSlice> = (set,get,store) => ({
   userCalendars: [],
   addCalendar: (newCalendar: Calendar) =>{
-    console.log(newCalendar)
-    set(state => ({
-      userCalendars: [...state.userCalendars, newCalendar]
-    })) 
+    set(state => {
+      const exist = state.userCalendars.some(calendar => calendar.id === newCalendar.id)
+      if(!exist) return {userCalendars: [...state.userCalendars, newCalendar]}
+      return state
+    }) 
+  },
+  addCalendars: (newCalendars: Calendar[]) => {
+    set(state => {
+      const filteredCalendars = newCalendars.filter(newCalendar => 
+        !state.userCalendars.some(calendar => calendar.id === newCalendar.id)
+      )
+      return { userCalendars: state.userCalendars.concat(filteredCalendars)}
+    })
   }
 })
 

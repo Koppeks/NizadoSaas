@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 export async function middleware(request: NextRequest) {
   const tokenCookie = cookies().get("token")
   const currentPath = request.nextUrl.pathname;
-  
+
   //Change visitorEndpoint to match the allowed endpoints
   const visitorEndpoints = ["/sign-in", "/sign-up", "/forgot-password", "/"]
   const goodEndpoint = visitorEndpoints.some((endpoint) => endpoint == currentPath)
@@ -13,6 +13,9 @@ export async function middleware(request: NextRequest) {
     if (!tokenCookie || tokenCookie.value == null) {
       if(!goodEndpoint){
         return NextResponse.redirect(new URL("/?expired=true", request.url));
+      }
+      if(request.nextUrl.search !== "?expired=true" && !tokenCookie) {
+        return NextResponse.redirect(new URL(`${currentPath}?expired=true`, request.url));
       }
     }else{
       const verified = await verifyToken(tokenCookie.value)
@@ -24,7 +27,6 @@ export async function middleware(request: NextRequest) {
     }
     return NextResponse.next();
   } catch (error) {
-    console.log(error)
     return NextResponse.redirect(new URL("/?expired=true", request.url));
   }
 }
