@@ -24,6 +24,7 @@
 @use "./containers/hub_navbar.scss";
 @use "./containers/hub/calendar/calendar_form_create/calendar_form_create.scss";
 @use "./containers/hub/calendar/calendar_managment_header.scss";
+@use "./containers/calendar_card.scss";
 
 //Pages -- colections of containers and components
 @use "./pages/home.scss";

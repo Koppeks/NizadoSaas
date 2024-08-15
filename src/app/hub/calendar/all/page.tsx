@@ -1,5 +1,6 @@
 "use client"
 
+import { Calendar_card } from "@/containers/calendar_card/calendar_card"
 import { AllCalendarManagmentHeader } from "@/containers/hub/calendar/all_calendar_managment_header/all_calendar_managment_header"
 import useStore from "@/redux/UseStore"
 import { getAllUserCalendars } from "@/utils/api_requests/calendarForms"
@@ -35,18 +36,13 @@ export default function All() {
   },[])
 
   return(
-    <main>
+    <main className="QUE">
       <AllCalendarManagmentHeader/>
-      {isLoading ? <>Loading</> : <>{userCalendars.map((calendar)=> 
-        <div>
-          <h2>{calendar.title}</h2>
-          <p>{calendar.description}</p>
-          {typeof calendar.bannedDays !== "undefined" && calendar.bannedDays.map((day, index) => (
-            <p key={index}>{day}</p>
-          ))}
-        </div>
-      )}</>}
-
+      <div className="scrolleable_content">
+        {isLoading ? <>Loading</> : <>{userCalendars.map((calendar, index)=> 
+          <Calendar_card key={index} calendar={calendar}/>
+        )}</>}
+      </div>
     </main>
   )
 }
