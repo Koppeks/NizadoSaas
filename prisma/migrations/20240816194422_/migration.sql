@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Event" ALTER COLUMN "repetitionId" DROP NOT NULL,
+ALTER COLUMN "linealId" DROP NOT NULL,
+ALTER COLUMN "secuenseId" DROP NOT NULL;

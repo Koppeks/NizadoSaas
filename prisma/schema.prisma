@@ -68,3 +68,43 @@ model User_Calendar {
   user User @relation(fields: [userId], references: [id])
   calendar Calendar @relation(fields: [calendarId], references: [id])
 }
+
+enum EventType {
+  REPETITION
+  LINEAL  
+  SECUENSE
+}
+
+model Event {
+  id String @id @default(uuid())
+  title String
+  description String?
+  color String?
+  type EventType
+  repetition Repetition?
+  lineal Lineal?
+  secuense Secuence?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Repetition {
+  repeatedDays Days[]
+  timeFrame String
+  eventId String @unique
+  event Event? @relation(fields: [eventId], references: [id])
+}
+
+model Lineal {
+  from DateTime
+  to DateTime
+  event Event? @relation(fields: [eventId], references: [id])
+  eventId String @unique
+}
+
+model Secuence {
+  multipleFrom DateTime[]
+  multipleTo DateTime[]
+  event Event? @relation(fields: [eventId], references: [id])
+  eventId String @unique
+}

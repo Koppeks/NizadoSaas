@@ -19,17 +19,16 @@
     height: calc(100% - $preset-standar-mesure * 3);
     width: calc(100% - $preset-standar-mesure * 3);
     
-    .QUE{
+    .all{
       height: 100%;
       scrollbar-gutter: stable;
       display: flex;
       flex-direction: column;
       
-      .scrolleable_content{
+      .scrolleable_cards{
         overflow: auto;
         flex: 1;
         max-height: max-content;
-        
       }
     }
 

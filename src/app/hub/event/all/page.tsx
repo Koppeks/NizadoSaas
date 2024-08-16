@@ -16,15 +16,15 @@ export default function All() {
 
   useEffect(() => {
     
-    const fetchCalendars = async ()=> {
+    const fetchEvents = async ()=> {
       try {
-        setIsLoading(true)
-        if (typeof userId !== "string" ) {
-          throw ({message: "The user ID needs to be a string"})
-        }
-        const result = await getAllUserCalendars({userId}) as AxiosResponse
-        console.log(result.data)
-        addCalendars(result.data.payload)
+        // setIsLoading(true)
+        // if (typeof userId !== "string" ) {
+        //   throw ({message: "The user ID needs to be a string"})
+        // }
+        // const result = await getAllUserCalendars({userId}) as AxiosResponse
+        // console.log(result.data)
+        // addCalendars(result.data.payload)
       } catch (error) {
         console.log(error)
       }finally{
@@ -32,17 +32,20 @@ export default function All() {
       }
     }
 
-    fetchCalendars()
+    fetchEvents()
 
   },[])
 
   return(
     <main className="all">
-      <ManagmentHeaderAll pointer="calendar"/>
+      <ManagmentHeaderAll pointer="events"/>
       <div className="scrolleable_cards">
-        {isLoading ? <Loader/> : <>{userCalendars.map((calendar, index)=> 
-          <Calendar_card key={index} calendar={calendar}/>
-        )}</>}
+        {isLoading ? <Loader/> : <>
+          {/* {userEvents.map((calendar, index)=> 
+            <p>Events</p>
+          )} */}
+          </>
+        }
       </div>
     </main>
   )

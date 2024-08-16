@@ -28,6 +28,12 @@ export const HubMenu = forwardRef<HTMLDivElement>(({ ...props }, ref) => {
             {expandText: "Create new", redirectTo: "/calendar/new"},
           ]
           } />
+        <ButtonHub text="Events" icon="icon_event" expandedElements={
+          [
+            {expandText: "All events", redirectTo: "/event/all"},
+            {expandText: "Create new", redirectTo: "/event/new"},
+          ]
+          } />
       </div>
     </div>
   );
