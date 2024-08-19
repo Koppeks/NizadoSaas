@@ -22,37 +22,47 @@ export const EventFormCreate = forwardRef<HTMLDivElement>(
           throw new Error("Function not implemented.");
         }}
       >
-        {({
-            values,
-            handleChange,
-            handleBlur,
-            handleSubmit
-        }) => {
+        {({ values, handleChange, handleBlur, handleSubmit }) => {
           return (
             <form className="Event_New_Form_Container" onSubmit={handleSubmit}>
-                <div className="general_settings">
+              <div className="general_settings">
                 <Text as={"h3"}>General settings</Text>
-                <Spliter spliterColor="blurred" spliterStyle="dashed" spliterType="full"/>
+                <Spliter
+                  spliterColor="blurred"
+                  spliterStyle="dashed"
+                  spliterType="full"
+                />
                 <div className="general_inputs">
-                <Input
+                  <Input
                     value={values.title}
                     type={"text"}
                     label="Title"
                     name={"title"}
                     handleChange={handleChange}
                     handleBlur={handleBlur}
-                />
-                
-                <Input
+                  />
+
+                  <Input
                     value={values.color}
                     type={"text"}
                     label="Color"
                     name={"color"}
                     handleChange={handleChange}
                     handleBlur={handleBlur}
+                  />
+                </div>
+              </div>
+              <div className="day_settings">
+                <Text as={"h3"}>Day settings</Text>
+                <Spliter
+                  spliterColor="blurred"
+                  spliterStyle="dashed"
+                  spliterType="full"
                 />
+                <div className="day_inputs">
+                  
                 </div>
-                </div>
+              </div>
             </form>
           );
         }}

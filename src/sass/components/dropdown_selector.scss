@@ -1,0 +1,60 @@
+@import "../abstracts/variables";
+
+.dropdown_selector{
+    display: flex;
+    gap: $preset-standar-mesure;
+
+    .dropdown_label{
+        padding: $preset-standar-mesure;
+        cursor: pointer;
+    }
+    
+    .dropdown_container{
+        background-color: $color-gray;
+        position: relative;
+        width: 160px;
+        padding: $preset-standar-mesure;
+        border-radius: $preset-standar-mesure;
+        cursor: pointer;
+
+        .dropdown_show_selected{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .dropdown_selected{
+                font-weight: 600;
+            }
+        }
+
+        .dropdown_table{
+            background-color: $color-gray;
+            transition: $transition;
+            position: absolute;
+            left: 0;
+            top: 110%;
+            width: 100%;
+            scale: 0.9;
+            opacity: 0;
+            border-radius: $preset-standar-mesure;
+            padding: $preset-standar-mesure;
+            cursor: default;
+
+            &.active{
+                opacity: 1;
+                scale: 1;
+            }
+
+            .dropdown_option{
+                padding: calc($preset-standar-mesure/2);
+                margin: $preset-standar-mesure;
+                border-radius: $preset-standar-mesure;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: $color-background;
+                }
+            }
+        }
+    }
+}

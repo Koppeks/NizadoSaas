@@ -1,0 +1,16 @@
+@import "../abstracts/variables";
+
+.Icon_Menu_Active{
+    .white{
+        fill: $color-white;
+    }
+    .orange{
+        fill: $color-primary;
+    }
+    .black{
+        fill: $color-dark;
+    }
+    .gray{
+        fill: $color-gray;
+    }
+}

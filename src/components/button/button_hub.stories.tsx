@@ -8,6 +8,7 @@ const meta: Meta<typeof ButtonHub> = {
   parameters: {
     layout: 'centered',
     nextjs:{
+      appDirectory: true,
       pathname: "",
     }
   },

@@ -52,7 +52,7 @@ const ButtonHub = forwardRef<HTMLDivElement, ButtonHubProps>(({text, icon, expan
           <i className={icon}></i>
           <Text as="p" className="text">{text}</Text>
         </button>
-        <IconMenuActive active={deployOptions}/>
+        <IconMenuActive color="white" active={deployOptions}/>
       </div>
       <div className={`options_dropdown ${deployOptions ? "deployed" : "not_deployed"}`}>
         {expandedElements.map((element, index)=> {
