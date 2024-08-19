@@ -1,6 +1,6 @@
 import { errorHandler } from "@/app/api/_Utils/ErrorHandling";
 import { prisma } from "@/app/api/_Utils/Prisma";
-import { successCreated, successTest } from "@/app/api/_Utils/SuccessHandling";
+import { successCreated } from "@/app/api/_Utils/SuccessHandling";
 
 export async function POST(request:Request) {
 
@@ -8,8 +8,9 @@ export async function POST(request:Request) {
     try {
         const validEvents = ["Repetition", "Lineal", "Secuense"]
         const checkValidEventType = validEvents.some(event => event == body.eventType)
-        if (!checkValidEventType || !body.eventType)throw({code: "S003", message: "The eventType cannot be null"})
-
+        if (!checkValidEventType)throw({code: "S003", message: "The eventType cannot be null"})
+        else if (!body.eventType) throw({code: "S004", message: "The eventType is incorrect"})
+    
         let event
 
         switch (body.eventType) {
@@ -23,7 +24,7 @@ export async function POST(request:Request) {
                         type: body.eventType.toUpperCase()
                     }
                 })
-                if(typeof createEvent === "undefined") throw ({})
+                if(typeof createEvent === "undefined") throw ({code:"S003",message: "The event was not created."})
                 await prisma.repetition.create({
                     data:{
                         repeatedDays: body.repeatedDays,

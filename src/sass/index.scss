@@ -15,6 +15,7 @@
 @use "./components/expand_menu.scss";
 @use "./components/text.scss";
 @use "./components/loader_animation.scss";
+@use "./components/spliter.scss";
 
 //Containers -- colection of components
 @use "./containers/navbar.scss";
@@ -22,7 +23,8 @@
 @use "./containers/form_footer.scss";
 @use "./containers/hub_menu.scss";
 @use "./containers/hub_navbar.scss";
-@use "./containers/hub/calendar/calendar_form_create/calendar_form_create.scss";
+@use "./containers/calendar_form_create.scss";
+@use "./containers/event_form_create.scss";
 @use "./containers/managment_header_all.scss";
 @use "./containers/calendar_card.scss";
 @use "./containers/loader.scss";

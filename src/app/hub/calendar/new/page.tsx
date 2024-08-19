@@ -1,4 +1,4 @@
-import { CalendarFormCreate } from "@/containers/hub/calendar/calendar_form_create/calendar_form_create";
+import { CalendarFormCreate } from "@/containers/calendar_form_create/calendar_form_create";
 
 export default function New() {
   return(

@@ -1,0 +1,17 @@
+@import "../abstracts/variables";
+
+.Event_New_Form_Container{
+    margin: $preset-standar-mesure;
+    padding: $preset-standar-mesure;
+
+    .general_settings{
+        display: flex;
+        flex-direction: column;
+        
+        .general_inputs{
+            padding-top: $preset-standar-mesure*4;
+            display: flex;
+            gap: $preset-standar-mesure*10;
+        }
+    }
+}

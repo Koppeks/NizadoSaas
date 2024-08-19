@@ -1,0 +1,29 @@
+@import "../abstracts/variables";
+
+.normal{
+    border-top: 2px;
+    width: 160px;
+}
+
+.full{
+    border-top: 2px;
+    width: 100%;
+}
+
+.solid{
+    border-top-style: solid;
+}
+.dotted {
+    border-top-style: dotted;
+}
+.dashed {
+    border-top-style: dashed;
+}
+
+
+.blurred{
+    border-top-color: $color-gray;
+}
+.strong {
+    border-top-color: $color-dark;
+}
