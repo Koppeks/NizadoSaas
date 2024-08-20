@@ -1,16 +1,19 @@
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { Text } from "../text/text";
 import { IconMenuActive } from "../icons/icons";
+import { FormikErrors } from "formik";
+import { newEventCreation } from "@/containers/event_form_create/event_form_create";
 
 type SelectorDropdownType = {
-  label: string;
-  options: string[];
+  label: string,
+  options: string[],
+  setFieldValue: (field: string, value: any, shouldValidate?: boolean) => Promise<void | FormikErrors<newEventCreation>>;
 };
 
 export const SelectorDropdown = forwardRef<
   HTMLDivElement,
   SelectorDropdownType
->(({ label, options, ...props }, ref) => {
+>(({ label, options, setFieldValue, ...props }, ref) => {
 
     const [selectedOption, setSelectedOption] = useState(options[0])
     const [dropdownActive, setDropdownActive] = useState(false)
@@ -49,7 +52,7 @@ export const SelectorDropdown = forwardRef<
           {options.map((option, index) => {
             return (
               <div className="dropdown_option" key={index}>
-                <Text onClick={() => setSelectedOption(option)} as="p">{option}</Text>
+                <Text onClick={() => {setSelectedOption(option), setFieldValue("type", option)}} as="p">{option}</Text>
               </div>
             );
           })}

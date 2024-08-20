@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SelectorTimeFromTo } from "./selector_time_from_to";
+import { SelectorTimeFrame } from "./selector_time_frame";
 
 const meta: Meta = {
   title: "Components/Selector/Time from to",
-  component: SelectorTimeFromTo,
+  component: SelectorTimeFrame,
   parameters: {
     layout: "centered"
   },
@@ -16,7 +16,6 @@ type Story = StoryObj<typeof meta>
 
 export const First: Story = {
   args:{
-    from: "",
-    to: ""
+    timeFrame: "10:20-11:30"
   }
 }

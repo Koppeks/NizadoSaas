@@ -1,12 +1,18 @@
 @import "../abstracts/variables";
 
 .Event_New_Form_Container{
-    margin: $preset-standar-mesure;
-    padding: $preset-standar-mesure;
+    padding: $preset-standar-mesure*6;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 
     .general_settings{
         display: flex;
         flex-direction: column;
+        gap: $preset-standar-mesure;
         
         .general_inputs{
             padding-top: $preset-standar-mesure*4;
@@ -17,9 +23,11 @@
     .day_settings{
         display: flex;
         flex-direction: column;
+        padding-top: $preset-standar-mesure*4;
+        gap: $preset-standar-mesure;
 
         .day_inputs{
-            padding-top: $preset-standar-mesure*4;
+            padding-top: $preset-standar-mesure*2;
             display: flex;
             flex-direction: column;
             gap: $preset-standar-mesure*2;
@@ -30,5 +38,10 @@
                 flex-direction: column;
             }
         }
+    }
+
+    .preset_button{
+        margin: $preset-standar-mesure*4 0;
+        width: 400px;
     }
 }

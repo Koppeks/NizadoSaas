@@ -7,10 +7,15 @@ import { Formik, FormikHelpers } from "formik";
 import { forwardRef } from "react";
 import { SelectorDropdown } from "@/components/selector_dropdown/selector_dropdown";
 import { SelectorCheckbox } from "@/components/selector_checkbox/selector_checkbox";
+import { SelectorTimeFrame } from "@/components/selector_time_from_to/selector_time_frame";
+import { Button } from "@/components/button/button";
 
-type newEventCreation = {
-  title: string;
-  color: string;
+export type newEventCreation = {
+  title: string,
+  color: string,
+  type:string,
+  timeFrame: string,
+  repeatedDays: string[],
 };
 
 export const EventFormCreate = forwardRef<HTMLDivElement>(
@@ -31,15 +36,19 @@ export const EventFormCreate = forwardRef<HTMLDivElement>(
         initialValues={{
           title: "",
           color: "#fff",
+          type: "",
+          repeatedDays: [],
+          timeFrame: "00:00-00:00"
         }}
         onSubmit={function (
           values: newEventCreation,
           formikHelpers: FormikHelpers<newEventCreation>
         ): void | Promise<any> {
+          console.log(values)
           throw new Error("Function not implemented.");
         }}
       >
-        {({ values, handleChange, handleBlur, handleSubmit }) => {
+        {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => {
           return (
             <form className="Event_New_Form_Container" onSubmit={handleSubmit}>
               <div className="general_settings">
@@ -58,7 +67,6 @@ export const EventFormCreate = forwardRef<HTMLDivElement>(
                     handleChange={handleChange}
                     handleBlur={handleBlur}
                   />
-
                   <Input
                     value={values.color}
                     type={"text"}
@@ -80,6 +88,7 @@ export const EventFormCreate = forwardRef<HTMLDivElement>(
                   <SelectorDropdown
                     options={eventTypesOptions}
                     label="Type of event"
+                    setFieldValue={setFieldValue}
                   />
                   <Spliter
                     spliterColor="blurred"
@@ -88,10 +97,17 @@ export const EventFormCreate = forwardRef<HTMLDivElement>(
                   />
                   <div className="added_days">
                     <Text as={"p"}>Select what day you want to be added to the repetition:</Text>
-                    <SelectorCheckbox options={daysOfWeek} checkboxColor="orange"/>
+                    <SelectorCheckbox options={daysOfWeek} checkboxColor="orange" setFieldValue={setFieldValue}/>
                   </div>
+                  <Spliter
+                    spliterColor="blurred"
+                    spliterStyle="solid"
+                    spliterType="normal"
+                  />
+                  <SelectorTimeFrame timeFrame={values.timeFrame} setFieldValue={setFieldValue}/>
                 </div>
               </div>
+              <Button type="submit" variant="primary" children={"Create this event"}/>
             </form>
           );
         }}

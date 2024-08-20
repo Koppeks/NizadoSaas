@@ -1,15 +1,18 @@
 import { forwardRef, useState } from "react";
 import { Text } from "../text/text";
+import { FormikErrors } from "formik";
+import { newEventCreation } from "@/containers/event_form_create/event_form_create";
 
 type SelectorCheckboxTypes = {
   options: string[];
   checkboxColor?: "orange" | "black" | "white";
+  setFieldValue: (field: string, value: string[], shouldValidate?: boolean) => Promise<void | FormikErrors<newEventCreation>>
 };
 
 export const SelectorCheckbox = forwardRef<
   HTMLDivElement,
   SelectorCheckboxTypes
->(({ options, checkboxColor, ...props }, ref) => {
+>(({ options, checkboxColor, setFieldValue, ...props }, ref) => {
   const [checked, setChecked] = useState<string[]>([]);
 
   const handleCheckArray = (
@@ -17,13 +20,15 @@ export const SelectorCheckbox = forwardRef<
     e: React.MouseEvent<HTMLLabelElement>
   ) => {
     e.preventDefault();
+    let newChecked
     if (checked.includes(value)) {
-      const newChecked = checked.filter((check) => check !== value);
+      newChecked = checked.filter((check) => check !== value);
       setChecked(newChecked);
     } else {
-      const newChecked = [...checked, value];
+      newChecked = [...checked, value];
       setChecked(newChecked);
     }
+    setFieldValue("repeatedDays", newChecked)
   };
 
   return (

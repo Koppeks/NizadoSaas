@@ -3,6 +3,7 @@
 .selector_dropdown{
     display: flex;
     gap: $preset-standar-mesure;
+    width: fit-content;
 
     .dropdown_label{
         padding: $preset-standar-mesure;
@@ -40,13 +41,13 @@
             padding: $preset-standar-mesure;
             cursor: default;
             pointer-events: none;
+            z-index: 1;
 
             &.active{
                 opacity: 1;
                 scale: 1;
                 pointer-events:all;
                 width: 150%;
-                z-index: 1;
             }
 
             .dropdown_option{

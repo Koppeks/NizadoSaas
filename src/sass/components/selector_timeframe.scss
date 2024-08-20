@@ -1,0 +1,12 @@
+@import "../abstracts/variables";
+
+.selector_timeframe{
+    display: flex;
+    gap: $preset-standar-mesure*6;
+
+    .time{
+        display: flex;
+        align-items: center;
+        gap: $preset-standar-mesure*2;
+    }
+}
