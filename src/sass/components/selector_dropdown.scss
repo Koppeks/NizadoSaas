@@ -1,6 +1,6 @@
 @import "../abstracts/variables";
 
-.dropdown_selector{
+.selector_dropdown{
     display: flex;
     gap: $preset-standar-mesure;
 
@@ -33,16 +33,20 @@
             position: absolute;
             left: 0;
             top: 110%;
-            width: 100%;
+            width: 150%;
             scale: 0.9;
             opacity: 0;
             border-radius: $preset-standar-mesure;
             padding: $preset-standar-mesure;
             cursor: default;
+            pointer-events: none;
 
             &.active{
                 opacity: 1;
                 scale: 1;
+                pointer-events:all;
+                width: 150%;
+                z-index: 1;
             }
 
             .dropdown_option{

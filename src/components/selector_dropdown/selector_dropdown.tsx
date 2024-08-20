@@ -2,14 +2,14 @@ import { forwardRef, useEffect, useRef, useState } from "react";
 import { Text } from "../text/text";
 import { IconMenuActive } from "../icons/icons";
 
-type DropdownSelectorType = {
+type SelectorDropdownType = {
   label: string;
   options: string[];
 };
 
-export const DropdownSelector = forwardRef<
+export const SelectorDropdown = forwardRef<
   HTMLDivElement,
-  DropdownSelectorType
+  SelectorDropdownType
 >(({ label, options, ...props }, ref) => {
 
     const [selectedOption, setSelectedOption] = useState(options[0])
@@ -38,7 +38,7 @@ export const DropdownSelector = forwardRef<
     },[dropdownActive, setDropdownActive])
 
   return (
-    <div ref={dropdownRef} className="dropdown_selector" onClick={() => setDropdownActive(!dropdownActive)}>
+    <div ref={dropdownRef} className="selector_dropdown" onClick={() => setDropdownActive(!dropdownActive)}>
       <Text className="dropdown_label" as="p">{label}:</Text>
       <div className="dropdown_container">
         <div className="dropdown_show_selected">

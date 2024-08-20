@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DropdownSelector } from "./dropdown_selector";
+import { SelectorDropdown } from "./selector_dropdown";
 
 const meta: Meta = {
-  title: "Components/Dropdown selector",
-  component: DropdownSelector,
+  title: "Components/Selector/Dropdown",
+  component: SelectorDropdown,
   parameters: {
     layout: "centered"
   },

@@ -1,0 +1,60 @@
+@import "../abstracts/variables";
+
+.selector_checkbox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: $preset-standar-mesure;
+    
+    .checkbox-wrapper{
+        cursor: pointer;
+        padding: $preset-standar-mesure;
+        flex: 0 0 40%;
+        display: flex;
+        gap: $preset-standar-mesure;
+        transition: $transition-bounce;
+        position: relative;
+        
+        .checkbox{
+            width: 30px;
+            position: relative;
+            transition: $transition-bounce;
+        }
+
+        &::before{
+            // background-color: saddlebrown;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
+
+    }
+    .selected{
+        border-radius: $preset-standar-mesure;
+        background-color: $color-gray;
+        
+        .checkbox{
+            width: 0px;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        &.white{
+            background-color: $color-white;
+        }
+        &.orange{
+            background-color: $color-primary;
+        }
+        &.black{
+            background-color: $color-dark;
+            color: $color-clear
+        }
+        &.red{
+            background-color: $color-warning;
+            color: $color-clear
+        }
+    }
+}

@@ -7,10 +7,15 @@ import { Text } from "@/components/text/text";
 import useStore from "@/redux/UseStore";
 import { createCalendar } from "@/utils/api_requests/calendarForms";
 import { calendarSchema } from "@/utils/schemas/schemas";
-import { newCalendarCreation } from "@/utils/types/calendar.types";
 import { AxiosResponse } from "axios";
 import { Field, Formik, FormikHelpers } from "formik";
 import { forwardRef } from "react";
+
+type newCalendarCreation = {
+  title: string,
+  description?: string,
+  bannedDays?: string[]
+}
 
 export const CalendarFormCreate = forwardRef<HTMLElement>(({ ...props }, ref) => {
 
