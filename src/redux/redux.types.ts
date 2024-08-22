@@ -1,5 +1,3 @@
-
-
 export type User = {
   id: string,
   username: string,
@@ -35,22 +33,29 @@ export interface CalendarSlice {
   // editCalendar: (calendarId: string, editFields: object) => void
 }
 
+export type Event = {
+  id: string,
+  title: string,
+  description?: string,
+  eventType: string,
+  color:string,
+  repetition?:{
+    repeatedDays: string[],
+    timeFrame: string
+  },
+  lineal?:{
+    from: string,
+    to: string,
+  },
+  secuense?:{
+    multipleFrom: string[],
+    multipleTo: string[]
+  },
+  created_at: string,
+  updated_at: string,
+}
 
-// bannedDays
-// : 
-// (2) ['Monday', 'Saturday']
-// created_at
-// : 
-// "2024-08-01T02:45:57.392Z"
-// description
-// : 
-// "aaaaaa"
-// id
-// : 
-// "b513b1b4-26e7-425a-9043-a7da115c261e"
-// title
-// : 
-// "rererere"
-// updated_at
-// : 
-// "2024-08-01T02:45:57.392Z"
+export interface EventSlice{
+  userEvents: Event[],
+  addEvent: (event:Event)=> void
+}

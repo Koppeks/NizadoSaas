@@ -1,7 +1,7 @@
 import { errorHandler } from "@/app/api/_Utils/ErrorHandling"
-import { verifyToken } from "@/app/api/_Utils/Jwt"
+import { decript } from "@/app/api/_Utils/Jwt"
 import { prisma } from "@/app/api/_Utils/Prisma"
-import { successCreated, successTest } from "@/app/api/_Utils/SuccessHandling"
+import { successCreated } from "@/app/api/_Utils/SuccessHandling"
 import { cookies } from "next/headers"
 
 
@@ -26,13 +26,13 @@ export async function POST(request: Request) {
     }
 }
 
-export async function GET(request: Request) {
+export async function GET() {
 
     try {
         //get cookies, validate and decript to get the userId
         const tokenCookie = cookies().get("token")
         if(!tokenCookie) throw({code:"S003", message: "The token of the user is either invalid or expired"})
-        const tokenDecript = await verifyToken(tokenCookie.value) as {userId: string, exp: number}
+        const tokenDecript = await decript(tokenCookie.value) as {userId: string, exp: number}
         if(!tokenDecript) throw({code: "S006", message: "Expired or incorrect token"})
         const userId = tokenDecript.userId
     

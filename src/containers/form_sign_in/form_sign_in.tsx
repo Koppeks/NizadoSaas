@@ -33,7 +33,7 @@ export const FormSignIn = forwardRef<HTMLElement>(({ ...props }, ref) => {
           console.log("No buena response")
           return null
         } 
-        addUser(response.data.payload.user)
+        addUser(response.data.user)
         router.push("/hub")
       }}
     >

@@ -9,14 +9,8 @@ import { SelectorDropdown } from "@/components/selector_dropdown/selector_dropdo
 import { SelectorCheckbox } from "@/components/selector_checkbox/selector_checkbox";
 import { SelectorTimeFrame } from "@/components/selector_time_from_to/selector_time_frame";
 import { Button } from "@/components/button/button";
-
-export type newEventCreation = {
-  title: string,
-  color: string,
-  type:string,
-  timeFrame: string,
-  repeatedDays: string[],
-};
+import { newEventCreation } from "@/utils/types/creation.types";
+import { createEvent } from "@/utils/api_requests/eventForms";
 
 export const EventFormCreate = forwardRef<HTMLDivElement>(
   ({ ...props }, ref) => {
@@ -36,15 +30,18 @@ export const EventFormCreate = forwardRef<HTMLDivElement>(
         initialValues={{
           title: "",
           color: "#fff",
-          type: "",
+          eventType: "Repetition",
           repeatedDays: [],
           timeFrame: "00:00-00:00"
         }}
-        onSubmit={function (
+        onSubmit={async function (
           values: newEventCreation,
           formikHelpers: FormikHelpers<newEventCreation>
-        ): void | Promise<any> {
+        ): Promise<void | Promise<any>> {
           console.log(values)
+
+          const response = await createEvent(values)
+          console.log(response)
           throw new Error("Function not implemented.");
         }}
       >

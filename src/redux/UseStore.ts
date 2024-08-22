@@ -1,6 +1,6 @@
 import {create, StateCreator} from "zustand"
 import { devtools, persist } from "zustand/middleware"
-import { Calendar, CalendarSlice, User, UserSlice } from "./redux.types"
+import { Calendar, CalendarSlice, Event, EventSlice, User, UserSlice } from "./redux.types"
 
 
 const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
@@ -28,12 +28,24 @@ const createCalendarSlice: StateCreator<CalendarSlice> = (set,get,store) => ({
   }
 })
 
-const useStore = create<UserSlice & CalendarSlice >()(
+const createEventSlice: StateCreator<EventSlice> = (set,get,store) => ({
+  userEvents: [],
+  addEvent: (newEvent: Event) => {
+    set(state => {
+      const exist = state.userEvents.some(event => event.id === newEvent.id)
+      if(!exist) return {userEvents: [...state.userEvents, newEvent]}
+      return state
+    })
+  }
+}) 
+
+const useStore = create<UserSlice & CalendarSlice & EventSlice >()(
   devtools(
     persist(
       (set, get, store) => ({
         ...createUserSlice(set, get, store),
-        ...createCalendarSlice(set, get, store)
+        ...createCalendarSlice(set, get, store),
+        ...createEventSlice(set, get,store),
       }), {name: "user-persist-storage"}
     ),{name: "globalStore"}
   )

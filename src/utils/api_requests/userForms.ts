@@ -15,6 +15,7 @@ export const requestSignIn = async (payload: {
       url: `${endpoint}/api/routes/user/sign-in`,
       data: payload
     })
+    console.log(response)
     return response as AxiosResponse
   } catch (error) {
     return error as AxiosError

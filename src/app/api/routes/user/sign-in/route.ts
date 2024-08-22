@@ -1,26 +1,24 @@
 import { errorHandler} from "@/app/api/_Utils/ErrorHandling"
 import { prisma } from "@/app/api/_Utils/Prisma";
-import { successRequest } from "@/app/api/_Utils/SuccessHandling"
-import { signToken } from "@/app/api/_Utils/Jwt";
+import { encrypt } from "@/app/api/_Utils/Jwt";
 import * as argon2 from "argon2";
-import { cookies } from "next/headers";
+import { successCreated } from "@/app/api/_Utils/SuccessHandling";
+import { NextRequest, NextResponse } from "next/server";
 
-
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const {email, password} = await request.json()
   try{
     if(!email || !password) throw ({code: "S003", message: "There are some missing paremeters"})
-
     const user = await prisma.user.findUnique({where: {email}})
     if(!user) throw ({code: "S001", message: "The user was not found"})
     else if (!(await argon2.verify(user.password, password))) throw ({code: "S004", message:"The password doesnt match"})
-
     const userSafe = await prisma.user.findUnique({omit: {password: true} ,where: {email}})
-    const newToken = await signToken({userId: user.id}, "1d")
-    
-    cookies().set("token", newToken)
+    const expires = new Date(Date.now() + 10 * 1000)
+    const newToken = await encrypt(user.id, expires)
+    const response = NextResponse.json({message:"The user is now logged", token: newToken, user: userSafe})
+    response.cookies.set("token", newToken,{httpOnly:true, expires})
 
-    return successRequest("The user is now logged", {token: newToken, user: userSafe})
+    return response
   }catch(error:any){
     return errorHandler(error)
   }

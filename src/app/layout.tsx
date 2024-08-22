@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-
 import "../sass/index.scss"
+import TokenValidation from "./_tokenValidation";
 
 export const metadata: Metadata = {
   title: "Nizado",
@@ -12,9 +12,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body>{children}</body>
+      <TokenValidation>
+        <body>{children}</body>
+      </TokenValidation>
     </html>
   );
 }

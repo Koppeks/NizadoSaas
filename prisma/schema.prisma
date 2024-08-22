@@ -28,6 +28,7 @@ model User{
   updated_at DateTime @updatedAt
 
   calendars User_Calendar[]
+  events User_Event[]
 }
 
 enum subscription_type {
@@ -86,6 +87,8 @@ model Event {
   secuense Secuence?
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+
+  user User_Event[]
 }
 
 model Repetition {
@@ -94,17 +97,25 @@ model Repetition {
   eventId String @unique
   event Event? @relation(fields: [eventId], references: [id])
 }
-
 model Lineal {
   from DateTime
   to DateTime
   event Event? @relation(fields: [eventId], references: [id])
   eventId String @unique
 }
-
 model Secuence {
   multipleFrom DateTime[]
   multipleTo DateTime[]
   event Event? @relation(fields: [eventId], references: [id])
   eventId String @unique
+}
+
+model User_Event {
+  userId String
+  eventId String
+  @@id([userId, eventId])
+
+  //Relation fields
+  user User @relation(fields: [userId], references: [id])
+  event Event @relation(fields: [eventId], references: [id])
 }

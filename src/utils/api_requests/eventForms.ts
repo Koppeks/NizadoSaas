@@ -1,18 +1,17 @@
-import axios, { AxiosError, AxiosResponse } from "axios"
-import { newCalendarCreation } from "../types/creation.types"
+import axios, { AxiosError, AxiosResponse } from "axios";
+import { newEventCreation } from "../types/creation.types";
 
 const developer = process.env.NEXT_PUBLIC_DEVELOPER_BASE_URL as string
 const production = process.env.NEXT_PUBLIC_DOMAIN as string
 
 const endpoint = developer !== "" ? developer : production
 
-export const createCalendar = async (payload:newCalendarCreation): Promise<AxiosResponse | AxiosError> => {
-    console.log(payload)
+export const createEvent = async (payload: newEventCreation) => {
     try {
         const response = await axios({
             method: "POST",
-            url: `${endpoint}/api/routes/user/calendar`,
-            data:payload
+            url:`${endpoint}/api/routes/user/event`,
+            data: payload
         })
         return response as AxiosResponse
     } catch (error) {
@@ -20,16 +19,14 @@ export const createCalendar = async (payload:newCalendarCreation): Promise<Axios
     }
 }
 
-export const getAllUserCalendars = async (payload: {userId: string}): Promise<AxiosResponse | AxiosError> => {
-    console.log(payload)
+export const getAllEvents = async () => {
     try {
         const response = await axios({
             method: "GET",
-            url: `${endpoint}/api/routes/user/calendar`,
-            data:payload
+            url:`${endpoint}/api/routes/user/event`
         })
         return response as AxiosResponse
     } catch (error) {
         return error as AxiosError
     }
-}
+} 

@@ -1,13 +1,17 @@
 import { errorHandler } from "@/app/api/_Utils/ErrorHandling";
+import { decript } from "@/app/api/_Utils/Jwt";
 import { prisma } from "@/app/api/_Utils/Prisma";
-import { successCreated } from "@/app/api/_Utils/SuccessHandling";
+import { successCreated, successTest } from "@/app/api/_Utils/SuccessHandling";
+import { cookies } from "next/headers";
 
 export async function POST(request:Request) {
 
     const body = await request.json()
     try {
         const validEvents = ["Repetition", "Lineal", "Secuense"]
+        console.log(body)
         const checkValidEventType = validEvents.some(event => event == body.eventType)
+
         if (!checkValidEventType)throw({code: "S003", message: "The eventType cannot be null"})
         else if (!body.eventType) throw({code: "S004", message: "The eventType is incorrect"})
     
@@ -52,4 +56,21 @@ export async function POST(request:Request) {
     } catch (error:any) {
         return errorHandler(error)
     }
+}
+export async function GET(request:Request) {
+    try {
+        const tokenCookie = cookies().get("token")
+        console.log(tokenCookie)
+        if(!tokenCookie) throw({code:"S003", message: "The token of the user is either invalid or expired"})
+        const tokenDecript = await decript(tokenCookie.value) as {userId: string, exp: number}
+        if(!tokenDecript) throw({code: "S006", message: "Expired or incorrect token"})
+        const userId = tokenDecript.userId
+        
+        ////
+
+        return successTest("Si")
+    } catch (error:any) {
+        return errorHandler(error)
+    }
+    
 }
