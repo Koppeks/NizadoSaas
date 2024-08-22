@@ -1,8 +1,8 @@
 import { errorHandler } from "@/app/api/_Utils/ErrorHandling";
-import { decript } from "@/app/api/_Utils/Jwt";
-import { prisma } from "@/app/api/_Utils/Prisma";
+import { decript } from "@/libs/TokenHandler";
+import prisma from "@/libs/Prisma";;
 import { successCreated, successTest } from "@/app/api/_Utils/SuccessHandling";
-import { cookies } from "next/headers";
+import { NextRequest } from "next/server";
 
 export async function POST(request:Request) {
 
@@ -57,12 +57,11 @@ export async function POST(request:Request) {
         return errorHandler(error)
     }
 }
-export async function GET(request:Request) {
+export async function GET(request:NextRequest) {
     try {
-        const tokenCookie = cookies().get("token")
-        console.log(tokenCookie)
-        if(!tokenCookie) throw({code:"S003", message: "The token of the user is either invalid or expired"})
-        const tokenDecript = await decript(tokenCookie.value) as {userId: string, exp: number}
+        const cookie = request.cookies.get("token")?.value
+        if(!cookie) throw({code:"S003", message: "The token of the user is either invalid or expired"})
+        const tokenDecript = await decript(cookie) as {userId: string, exp: number}
         if(!tokenDecript) throw({code: "S006", message: "Expired or incorrect token"})
         const userId = tokenDecript.userId
         

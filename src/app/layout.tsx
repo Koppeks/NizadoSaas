@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "../sass/index.scss"
-import TokenValidation from "./_tokenValidation";
 
 export const metadata: Metadata = {
   title: "Nizado",
@@ -15,9 +14,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <TokenValidation>
         <body>{children}</body>
-      </TokenValidation>
     </html>
   );
 }

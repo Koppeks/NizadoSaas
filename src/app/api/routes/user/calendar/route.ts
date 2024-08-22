@@ -1,6 +1,6 @@
 import { errorHandler } from "@/app/api/_Utils/ErrorHandling"
-import { decript } from "@/app/api/_Utils/Jwt"
-import { prisma } from "@/app/api/_Utils/Prisma"
+import { decript } from "@/libs/TokenHandler"
+import prisma from "@/libs/Prisma";
 import { successCreated } from "@/app/api/_Utils/SuccessHandling"
 import { cookies } from "next/headers"
 

@@ -1,5 +1,5 @@
 import { errorHandler} from "@/app/api/_Utils/ErrorHandling";
-import { prisma } from "@/app/api/_Utils/Prisma";
+import prisma from "@/libs/Prisma";;
 import { successCreated } from "@/app/api/_Utils/SuccessHandling";
 import { Prisma } from "@prisma/client";
 import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";

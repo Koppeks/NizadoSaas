@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { decript } from "./app/api/_Utils/Jwt";
+import { decript } from "./libs/TokenHandler";
 
 export async function middleware(request: NextRequest) {
   const currentPath = request.nextUrl.pathname;
@@ -11,50 +11,24 @@ export async function middleware(request: NextRequest) {
   const goodEndpoint = visitorEndpoints.some(
     (endpoint) => endpoint == currentPath
   );
-  if (currentPath.startsWith("/api")) {
+  if (!cookie) return NextResponse.redirect(new URL("/", request.url));
+  try {
+    const decriptedCookie = await decript(cookie);
+    console.log(decriptedCookie);
     return NextResponse.next();
-  } else {
-    if (!cookie) {
-      if (!goodEndpoint) {
-        return NextResponse.redirect(new URL("/", request.url));
-      }
-    } else {
-      const verified = await decript(cookie);
-      console.log("----------------------------------------------------")
-      console.log(verified)
-      if (verified == "TokenExpired" || verified == "TokenSignatureFailed") {
-        if (!goodEndpoint) {
-          return NextResponse.redirect(
-            new URL("/sign-in", request.url)
-          );
-        }
-      } else if (goodEndpoint)
-        return NextResponse.redirect(new URL(`/${currentPath}`, request.url));
-    }
-    return NextResponse.next();
+  } catch (error) {
+    console.log(error);
+    return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 }
 
+// export const config = {
+//   matcher: [
+//     // '/((?!.*\\.|api\\/).*)'
+//     "/((?!_next/static|_next/image|favicon.ico).*)",
+//   ],
+// };
+
 export const config = {
-  matcher: [
-    // '/((?!.*\\.|api\\/).*)'
-    "/((?!_next/static|_next/image|favicon.ico).*)",
-  ],
-};
-
-/*
-import { NextRequest, NextResponse } from "next/server"
-import { decript } from "./_Utils/Jwt"
-
-export async function authMiddleware(request:NextRequest) {
-  const cookie = request.cookies.get("token")?.value
-
-  console.log("-----------------------------------")
-  console.log(cookie)
-
-  if(!cookie) return ({code: "S003", message: "Not authorized"})
-  const verified = await decript(cookie)
-  if(verified == "TokenExpired") return ({code: "S006", message: "The token its expired"})
-  return NextResponse.json(verified)
+  matcher: ["/hub", "/hub/:path*"]
 }
-*/

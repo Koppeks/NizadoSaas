@@ -1,10 +1,12 @@
-import { prisma } from "@/app/api/_Utils/Prisma";
+
 import { successCreated } from "../../_Utils/SuccessHandling";
 import {errorHandler} from "../../_Utils/ErrorHandling";
 import { NextRequest, NextResponse } from "next/server";
 
 import * as argon2 from "argon2"
-import { decript } from "../../_Utils/Jwt";
+import { decript } from "@/libs/TokenHandler";
+import prisma from "@/libs/Prisma";
+
 
 export async function GET(request:NextRequest, response:NextResponse) {
   try {

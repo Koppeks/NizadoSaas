@@ -1,6 +1,6 @@
 import { errorHandler} from "@/app/api/_Utils/ErrorHandling"
-import { prisma } from "@/app/api/_Utils/Prisma";
-import { encrypt } from "@/app/api/_Utils/Jwt";
+import prisma from "@/libs/Prisma";
+import { encrypt } from "@/libs/TokenHandler";
 import * as argon2 from "argon2";
 import { successCreated } from "@/app/api/_Utils/SuccessHandling";
 import { NextRequest, NextResponse } from "next/server";
