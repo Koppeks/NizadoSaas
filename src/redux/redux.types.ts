@@ -57,5 +57,6 @@ export type Event = {
 
 export interface EventSlice{
   userEvents: Event[],
-  addEvent: (event:Event)=> void
+  addEvent: (event:Event)=> void,
+  addEvents: (events:Event[]) => void
 }

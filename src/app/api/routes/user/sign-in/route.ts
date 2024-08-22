@@ -13,7 +13,9 @@ export async function POST(request: NextRequest) {
     if(!user) throw ({code: "S001", message: "The user was not found"})
     else if (!(await argon2.verify(user.password, password))) throw ({code: "S004", message:"The password doesnt match"})
     const userSafe = await prisma.user.findUnique({omit: {password: true} ,where: {email}})
-    const expires = new Date(Date.now() + 10 * 1000)
+    //one day from now                  hours-minutes-seconds
+    const expires = new Date(Date.now() + 24 * 60 * 60 * 1000)
+    // const expires = new Date(Date.now() + 10 * 1000)
     const newToken = await encrypt(user.id, expires)
     const response = NextResponse.json({message:"The user is now logged", token: newToken, user: userSafe})
     response.cookies.set("token", newToken,{httpOnly:true, expires})

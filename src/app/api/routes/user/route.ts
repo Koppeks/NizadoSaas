@@ -1,27 +1,15 @@
-
-import { successCreated } from "../../_Utils/SuccessHandling";
 import {errorHandler} from "../../_Utils/ErrorHandling";
 import { NextRequest, NextResponse } from "next/server";
-
-import * as argon2 from "argon2"
 import { decript } from "@/libs/TokenHandler";
-import prisma from "@/libs/Prisma";
 
-
-export async function GET(request:NextRequest, response:NextResponse) {
+export async function GET(request:NextRequest) {
   try {
     const token = request.cookies.get("token")
-    console.log(request)
-
     if(!token) throw ({code: "S003", message: "Token not found"})
-
-    // const validInfoToken = await decript(token)
-
-    const users = await prisma.user.findMany();
-    if (users.length > 0)
-      return successCreated("Usuarios enviados correctamente", users)
-    else
-      return successCreated("No hay usuarios en la base de datos", {})
+    const validInfoToken = await decript(token.value)
+    if(!validInfoToken || validInfoToken === "TokenError") throw({code: "S003", message: "Token is invalid or expired"})
+    const response = NextResponse.json({message: "The user info is good", success: true, userId: validInfoToken.userId})
+    return response
   } catch (error:any) {
     return errorHandler(error)
   }

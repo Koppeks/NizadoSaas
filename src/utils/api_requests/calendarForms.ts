@@ -11,6 +11,7 @@ export const createCalendar = async (payload:newCalendarCreation): Promise<Axios
     try {
         const response = await axios({
             method: "POST",
+            withCredentials: true,
             url: `${endpoint}/api/routes/user/calendar`,
             data:payload
         })
@@ -25,6 +26,7 @@ export const getAllUserCalendars = async (payload: {userId: string}): Promise<Ax
     try {
         const response = await axios({
             method: "GET",
+            withCredentials: true,
             url: `${endpoint}/api/routes/user/calendar`,
             data:payload
         })

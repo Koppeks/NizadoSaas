@@ -12,6 +12,7 @@ export const requestSignIn = async (payload: {
   try {
     const response = await axios({
       method: "post",
+      withCredentials: true,
       url: `${endpoint}/api/routes/user/sign-in`,
       data: payload
     })
@@ -26,6 +27,7 @@ export const requestSignOut = async (): Promise<AxiosResponse | AxiosError> => {
   try {
     const response = await axios({
       method: "get",
+      withCredentials: true,
       url: `${endpoint}/api/routes/user/sign-out`,
     })
 
@@ -45,6 +47,7 @@ export const requestSignUp = async (payload:{
   try {
     const response = await axios({
       method: "post",
+      withCredentials: true,
       url: `${endpoint}/api/routes/user/sign-up`,
       data: payload
     })

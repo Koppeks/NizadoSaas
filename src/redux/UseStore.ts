@@ -36,6 +36,14 @@ const createEventSlice: StateCreator<EventSlice> = (set,get,store) => ({
       if(!exist) return {userEvents: [...state.userEvents, newEvent]}
       return state
     })
+  },
+  addEvents:(newEvents: Event[]) => {
+    set(state => {
+      const filteredEvents = newEvents.filter(newEvent => 
+        !state.userEvents.some(calendar => calendar.id === newEvent.id)
+      )
+      return { userEvents: state.userEvents.concat(filteredEvents)}
+    })
   }
 }) 
 

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "../sass/index.scss"
+import "../sass/index.scss";
 
 export const metadata: Metadata = {
   title: "Nizado",
@@ -11,10 +11,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-        <body>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

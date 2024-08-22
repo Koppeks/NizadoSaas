@@ -6,11 +6,11 @@ export async function middleware(request: NextRequest) {
   const cookie = request.cookies.get("token")?.value;
 
   //Change visitorEndpoint to match the allowed endpoints
-  const visitorEndpoints = ["/sign-in", "/sign-up", "/forgot-password", "/"];
+  // const visitorEndpoints = ["/sign-in", "/sign-up", "/forgot-password", "/"];
 
-  const goodEndpoint = visitorEndpoints.some(
-    (endpoint) => endpoint == currentPath
-  );
+  // const goodEndpoint = visitorEndpoints.some(
+  //   (endpoint) => endpoint == currentPath
+  // );
   if (!cookie) return NextResponse.redirect(new URL("/", request.url));
   try {
     const decriptedCookie = await decript(cookie);

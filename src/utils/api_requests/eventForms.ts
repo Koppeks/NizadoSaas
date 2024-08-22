@@ -10,6 +10,7 @@ export const createEvent = async (payload: newEventCreation) => {
     try {
         const response = await axios({
             method: "POST",
+            withCredentials: true,
             url:`${endpoint}/api/routes/user/event`,
             data: payload
         })
@@ -23,6 +24,7 @@ export const getAllEvents = async () => {
     try {
         const response = await axios({
             method: "GET",
+            withCredentials: true,
             url:`${endpoint}/api/routes/user/event`
         })
         return response as AxiosResponse
