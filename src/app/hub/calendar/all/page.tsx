@@ -1,6 +1,6 @@
 "use client"
 
-import { Calendar_card } from "@/containers/calendar_card/calendar_card"
+import { CalendarCard } from "@/containers/calendar_card/calendar_card"
 import { Loader } from "@/containers/loader_container/loader_container"
 import { ManagmentHeaderAll } from "@/containers/managment_header_all/managment_header_all"
 import useStore from "@/redux/UseStore"
@@ -41,7 +41,7 @@ export default function All() {
       <ManagmentHeaderAll pointer="calendar"/>
       <div className="scrolleable_cards">
         {isLoading ? <Loader/> : <>{userCalendars.map((calendar, index)=> 
-          <Calendar_card key={index} calendar={calendar}/>
+          <CalendarCard key={index} calendar={calendar}/>
         )}</>}
       </div>
     </main>

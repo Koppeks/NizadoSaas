@@ -1,5 +1,6 @@
 "use client";
 
+import { EventCard } from "@/containers/event_card/event_card";
 import { Loader } from "@/containers/loader_container/loader_container";
 import { ManagmentHeaderAll } from "@/containers/managment_header_all/managment_header_all";
 import useStore from "@/redux/UseStore";
@@ -46,9 +47,10 @@ export default function All() {
           <Loader />
         ) : (
           <>
-            {userEvents.map((event, index) => (
-              <p key={index}>Events</p>
-            ))}
+            {userEvents.map((event, index) => {
+              return <EventCard key={index} event={event} />
+            }
+            )}
           </>
         )}
       </div>

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const passwordRules = /^(?=.*[A-Z])(?=.*[0-9]).{5,}$/;
+const passwordRules = /^(?=.*[a-z])(?=.*[0-9]).{5,}$/;
 
 const signUpSchema = yup.object({
   name: yup.string().required("This field is required"),
@@ -11,7 +11,7 @@ const signUpSchema = yup.object({
   password: yup
     .string()
     .matches(passwordRules, {
-      message: "Password needs to have 5 letters, one uppercase and one number",
+      message: "Password needs to have 5 letters and one number",
     })
     .required("This field is required"),
   repeatPassword: yup

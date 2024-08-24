@@ -3,7 +3,7 @@ import { Calendar } from "@/redux/redux.types";
 import { forwardRef } from "react";
 
 
-export const Calendar_card = forwardRef<HTMLDivElement, {calendar:Calendar}>(({ calendar , ...props}, ref) => {
+export const CalendarCard = forwardRef<HTMLDivElement, {calendar:Calendar}>(({ calendar , ...props}, ref) => {
     const date = new Date(calendar.created_at).getDate() + "/" + new Date(calendar.created_at).getMonth() + "/" + new Date(calendar.created_at).getFullYear();
     return (
         <div className="calendar_card_container">

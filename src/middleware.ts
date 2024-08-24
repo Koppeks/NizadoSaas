@@ -13,8 +13,8 @@ export async function middleware(request: NextRequest) {
   // );
   if (!cookie) return NextResponse.redirect(new URL("/", request.url));
   try {
-    const decriptedCookie = await decript(cookie);
-    console.log(decriptedCookie);
+    //Decript
+    await decript(cookie);
     return NextResponse.next();
   } catch (error) {
     console.log(error);

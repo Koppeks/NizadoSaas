@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
             title: body.title,
             description: body.description || "",
             color: body.color || "",
-            type: body.eventType.toUpperCase(),
+            eventType: body.eventType.toUpperCase(),
           },
         });
         if (typeof createEvent === "undefined")

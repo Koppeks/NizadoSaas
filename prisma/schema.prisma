@@ -73,7 +73,7 @@ model User_Calendar {
 enum EventType {
   REPETITION
   LINEAL  
-  SECUENSE
+  SECUENCE
 }
 
 model Event {
@@ -81,7 +81,7 @@ model Event {
   title String
   description String?
   color String?
-  type EventType
+  eventType EventType
   repetition Repetition?
   lineal Lineal?
   secuense Secuence?
@@ -92,18 +92,21 @@ model Event {
 }
 
 model Repetition {
+  id String @id @default(uuid())
   repeatedDays Days[]
   timeFrame String
   eventId String @unique
   event Event? @relation(fields: [eventId], references: [id])
 }
 model Lineal {
+  id String @id @default(uuid())
   from DateTime
   to DateTime
   event Event? @relation(fields: [eventId], references: [id])
   eventId String @unique
 }
 model Secuence {
+  id String @id @default(uuid())
   multipleFrom DateTime[]
   multipleTo DateTime[]
   event Event? @relation(fields: [eventId], references: [id])
