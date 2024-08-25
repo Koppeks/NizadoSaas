@@ -1,0 +1,36 @@
+@import "../abstracts/variables";
+
+.event_card_container{
+  box-shadow: $preset-light-box-shadow;
+  background-color: $color-background;
+  width: 600px;
+  padding: $preset-standar-mesure;
+  border-radius: $preset-standar-mesure;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  .event_info{
+    display: flex;
+    flex-direction: row;
+    gap: $preset-standar-mesure;
+    align-items: center;
+
+    .event_type{
+      width: fit-content;
+      padding: calc($preset-standar-mesure/2) $preset-standar-mesure*2;
+      border-radius: $preset-standar-mesure;
+      border: 1px solid $color-gray;
+    }
+  
+    .event_title{
+      width: 300px;
+    }
+  }
+
+  .event_interaction{
+    display: flex;
+    align-items: center;
+    gap: $preset-standar-mesure*2;
+  }
+}

@@ -18,9 +18,9 @@ export const eventformcreate: Story = {
   args: {
     event: {
       id: "8c32c349-4f17-4ac4-8335-da00c65fee2e",
-      title: "eegffffff54444444444444444444444444444444fffffffffffffff",
+      title: "Event example 1",
       description: "",
-      color: "#f3f3f3",
+      color: "#6ac51f",
       eventType: "REPETITION",
       lineal: null,
       repetition: {

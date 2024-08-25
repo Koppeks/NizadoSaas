@@ -21,7 +21,8 @@ export type PropsOf<
 
 type AsProp<C extends React.ElementType> = {
   as?: C,
-  variant?: "error" | "small"
+  variant?: "error" | "small",
+  redirect?: string
 }
 
 export type ExtendableProps<
