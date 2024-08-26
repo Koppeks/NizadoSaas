@@ -2,7 +2,7 @@ import {
   PolymorphicComponentPropsWithRef,
   PolymorphicRef,
 } from "@/utils/types/component.types";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { forwardRef } from "react";
 
 type TextProps<C extends React.ElementType> =
@@ -15,7 +15,7 @@ type TextComponent = <C extends React.ElementType = "span">(
 //@ts-expect-error -- Text crying null
 export const Text: TextComponent = forwardRef(
   <C extends React.ElementType = "span">(
-    { as, variant, redirect, ...props }: TextProps<C>,
+    { as, variant, redirect, blur, ...props }: TextProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
     const Component = as || "span"
@@ -29,6 +29,6 @@ export const Text: TextComponent = forwardRef(
       router.push(`${redirect}`)
     }
 
-    return <Component onClick={redirect ? handleRedirect : undefined} ref={ref} className={`preset_text ${variant}`} {...props} />;
+    return <Component onClick={redirect ? handleRedirect : undefined} ref={ref} className={`preset_text ${variant} ${blur && "blur"}`} {...props} />;
   }
 );

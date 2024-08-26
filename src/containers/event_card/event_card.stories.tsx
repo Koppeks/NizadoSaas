@@ -6,6 +6,10 @@ const meta: Meta = {
   component: EventCard,
   parameters: {
     layout: "centered",
+    nextjs:{
+      appDirectory: true,
+      pathname: "",
+    }
   },
   tags: ["autodocs"],
 };

@@ -22,6 +22,7 @@ export type PropsOf<
 type AsProp<C extends React.ElementType> = {
   as?: C,
   variant?: "error" | "small",
+  blur?: boolean,
   redirect?: string
 }
 
@@ -55,6 +56,10 @@ export type IconicProps = {
   redirectTo?: string,
   customFunction?: () => void,
   icon : "icon_user" | "icon_gear" | "icon_bell" | "icon_signout" | "icon_home" | "icon_calendar"
+}
+
+export type IconicPropsMedium = {
+  icon: "calendar_icon_medium"
 }
 
 
