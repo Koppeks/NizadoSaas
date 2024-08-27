@@ -66,11 +66,10 @@ const useStore = create<UserSlice & CalendarSlice & EventSlice & {resetStore: ()
   )
 )
 
+export default useStore
 // Delete old storage
 // const clearOldState = () => {
 //   localStorage.removeItem('user-persist-storage');
 //   localStorage.removeItem('globalStore');
 // };
 // clearOldState()
-
-export default useStore

@@ -17,8 +17,9 @@ export const HubNavbar = forwardRef<HTMLDivElement> (({...props}, ref) => {
   const resetStore = useStore(state => state.resetStore)
 
   const handleSignOut = async () => {
+    await requestSignOut()
     resetStore()
-    await requestSignOut().then(() => router.push("/sign-in"))
+    router.push("/sign-in")
   }
 
   return(

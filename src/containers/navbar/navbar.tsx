@@ -17,17 +17,19 @@ export const Navbar = forwardRef<HTMLDivElement>(({}, ref) => {
   const {data, error, isLoading} = useSWR("http://localhost:3000/api/routes/user", fetcher)
   const router = useRouter();
 
+  const {resetStore} = useStore()
+  
+  const handleSignOut = async () => {
+    await requestSignOut()
+    resetStore()
+    router.push("/sign-in")
+  }
+
+  // Rendered issues if is not at the end
   if (isLoading) {
     return null; // Devuelve null mientras se verifica el estado del token
   }
-
-  const resetStore = useStore(state => state.resetStore)
-
-  const handleSignOut = async () => {
-    resetStore()
-    await requestSignOut().then(() => router.push("/sign-in"))
-  }
-
+  
   return (
     <div ref={ref} className="container_navbar">
       <NizadoLogo />
@@ -79,7 +81,7 @@ export const Navbar = forwardRef<HTMLDivElement>(({}, ref) => {
             <Iconic icon="icon_bell"/>
             <Iconic
               icon="icon_signout"
-              customFunction={() => handleSignOut()}
+              customFunction={handleSignOut}
             />
           </>
         ) : (
