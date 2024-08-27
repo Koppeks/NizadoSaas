@@ -5,6 +5,7 @@
 
 //Icons
 @use "./icons/icons.scss";
+@use "./icons/icon_settings.scss";
 
 //Components -- base building blocks
 @use "./components/input/input.scss";
@@ -34,6 +35,7 @@
 @use "./containers/calendar_card.scss";
 @use "./containers/event_card.scss";
 @use "./containers/loader.scss";
+@use "./containers/modal.scss";
 
 //Pages -- colections of containers and components
 @use "./pages/home.scss";

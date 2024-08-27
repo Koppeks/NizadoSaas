@@ -3,7 +3,7 @@
 .event_card_container{
   box-shadow: $preset-light-box-shadow;
   background-color: $color-background;
-  width: 600px;
+  margin: $preset-standar-mesure*4;
   padding: $preset-standar-mesure;
   border-radius: $preset-standar-mesure;
   height: auto;
@@ -16,13 +16,15 @@
     .event_info{
       display: flex;
       flex-direction: row;
-      gap: $preset-standar-mesure;
+      gap: $preset-standar-mesure*4;
       align-items: center;
   
       .event_type{
-        width: 50px;
-        text-align: center;
-        padding: calc($preset-standar-mesure/2) $preset-standar-mesure*2;
+        width: $preset-standar-mesure*6;
+        height: $preset-standar-mesure*6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: $preset-standar-mesure;
         border: 1px solid $color-gray;
       }
@@ -47,6 +49,7 @@
     max-height: 0;
     opacity: 0;
     transition: $transition;
+    pointer-events: none;
     
     &.active{
       padding-top: $preset-standar-mesure*2;
@@ -56,7 +59,9 @@
 
     .event_full_data{
       display: flex;
-      gap: $preset-standar-mesure;
+      gap: $preset-standar-mesure*2;
+      align-items: center;
+      padding: $preset-standar-mesure 0;
 
       .data{
         opacity: 0.5;
@@ -64,6 +69,12 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        .details{
+          display: flex;
+          align-items: center;
+          gap: $preset-standar-mesure;
+        }
       }
     }
   }

@@ -12,7 +12,7 @@ export type User = {
 export interface UserSlice {
   user: User | null
   addUser: (user : User) => void
-  removeUser: () => void
+  resetUser: () => void
 }
 
 export type Calendar = {
@@ -31,6 +31,7 @@ export interface CalendarSlice {
   // removeCalendar: (calendarId:string) => void,
   // getCalendar: (calendarId: string) => Calendar,
   // editCalendar: (calendarId: string, editFields: object) => void
+  resetCalendars: () => void
 }
 
 export type Event = {
@@ -58,5 +59,6 @@ export type Event = {
 export interface EventSlice{
   userEvents: Event[],
   addEvent: (event:Event)=> void,
-  addEvents: (events:Event[]) => void
+  addEvents: (events:Event[]) => void,
+  resetEvents: () => void
 }

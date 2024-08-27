@@ -2,7 +2,8 @@ import React, { ComponentProps } from "react"
 
 export type ButtonProps = ComponentProps<"button"> & {
   variant: "primary" | "secondary" | "tertiary" | "quaternary",
-  children: string
+  children: React.ReactNode,
+  type: string
 }
 
 export type ButtonHubProps = ComponentProps<"div"> & {
@@ -23,7 +24,11 @@ type AsProp<C extends React.ElementType> = {
   as?: C,
   variant?: "error" | "small",
   blur?: boolean,
-  redirect?: string
+  redirect?: string,
+  textColor?: "white" | "orange" | "red" | "blue",
+  bold?: boolean,
+  pointer?: boolean,
+  className? : string
 }
 
 export type ExtendableProps<
@@ -50,7 +55,6 @@ export type PolymorphicComponentPropsWithRef<
 
 // Text dynamic types end
 
-
 export type IconicProps = {
   text? : string,
   redirectTo?: string,
@@ -61,7 +65,6 @@ export type IconicProps = {
 export type IconicPropsMedium = {
   icon: "calendar_icon_medium"
 }
-
 
 export type ExpandMenuProps = {
   menuTitle: string,

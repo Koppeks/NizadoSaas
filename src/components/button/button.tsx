@@ -6,10 +6,10 @@ import { forwardRef, useState } from "react";
 import { Text } from "../text/text";
 import { IconMenuActive } from "../icons/icons";
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps & { type: string }>(
-  ({ variant, type, children, ...props }, ref) => {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ variant, type, children, onClick, ...props }, ref) => {
     return (
-      <button ref={ref} type={type} className={`preset_button ${variant}`}>
+      <button onClick={onClick} ref={ref} type={type} className={`preset_button ${variant}`}>
         {children}
       </button>
     );

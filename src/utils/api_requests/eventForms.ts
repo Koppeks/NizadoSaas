@@ -32,3 +32,19 @@ export const getAllEvents = async () => {
         return error as AxiosError
     }
 } 
+
+export const deleteEvent = async (eventId:string) => {
+    try {
+        const response = await axios({
+            method: "DELETE",
+            withCredentials:true,
+            url:`${endpoint}/api/routes/user/event`,
+            params:{
+                eventId: eventId
+            }
+        })
+        return response as AxiosResponse
+    } catch (error) {
+        return error as AxiosError
+    }
+}

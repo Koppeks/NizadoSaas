@@ -1,0 +1,42 @@
+@import "../abstracts/variables";
+
+.modal_delete{
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .gray_screen{
+    background-color: $color-background-disabled;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modal{
+    border-radius: $preset-standar-mesure*2;
+    padding: $preset-standar-mesure*2;
+    background-color: white;
+    z-index: 11;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+    .close{
+      align-self: flex-end;
+    }
+    .content{
+      padding: $preset-standar-mesure*4 0;
+    }
+    .buttons{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%;
+    }
+  }
+}

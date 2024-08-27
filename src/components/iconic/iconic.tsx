@@ -23,6 +23,5 @@ export const Iconic = forwardRef<HTMLDivElement, IconicProps>(({text, icon, cust
       </div>
       {text !== "" && <Text className="text" as="p">{text}</Text>}
     </div>
-
   )
 })

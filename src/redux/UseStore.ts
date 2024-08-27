@@ -6,7 +6,7 @@ import { Calendar, CalendarSlice, Event, EventSlice, User, UserSlice } from "./r
 const createUserSlice : StateCreator<UserSlice> = (set, get, store) => ({
   user: null,
   addUser: (user: User) => set({user}),
-  removeUser: () => set({user: null})
+  resetUser: () => set({user: null})
 })
 
 const createCalendarSlice: StateCreator<CalendarSlice> = (set,get,store) => ({
@@ -25,7 +25,8 @@ const createCalendarSlice: StateCreator<CalendarSlice> = (set,get,store) => ({
       )
       return { userCalendars: state.userCalendars.concat(filteredCalendars)}
     })
-  }
+  },
+  resetCalendars: () => set({userCalendars: []})
 })
 
 const createEventSlice: StateCreator<EventSlice> = (set,get,store) => ({
@@ -44,16 +45,22 @@ const createEventSlice: StateCreator<EventSlice> = (set,get,store) => ({
       )
       return { userEvents: state.userEvents.concat(filteredEvents)}
     })
-  }
+  },
+  resetEvents: () => set({userEvents: []})
 }) 
 
-const useStore = create<UserSlice & CalendarSlice & EventSlice >()(
+const useStore = create<UserSlice & CalendarSlice & EventSlice & {resetStore: () => void} >()(
   devtools(
     persist(
       (set, get, store) => ({
         ...createUserSlice(set, get, store),
         ...createCalendarSlice(set, get, store),
         ...createEventSlice(set, get,store),
+        resetStore:() =>{
+          get().resetUser();
+          get().resetCalendars();
+          get().resetEvents();
+        }
       }), {name: "user-persist-storage"}
     ),{name: "globalStore"}
   )
@@ -64,7 +71,6 @@ const useStore = create<UserSlice & CalendarSlice & EventSlice >()(
 //   localStorage.removeItem('user-persist-storage');
 //   localStorage.removeItem('globalStore');
 // };
-
-// clearOldState();
+// clearOldState()
 
 export default useStore

@@ -7,7 +7,22 @@ const meta: Meta<typeof Text> = {
   component: Text,
   parameters: {
     layout: 'centered',
+  },  
+  argTypes:{
+    variant: {
+      options: ["error", "small"],
+      control: {type: "select"}
+    },
+    textColor: {
+      options: ["white", "orange", "red", "blue"],
+      control: {type: "select"}
+    }
   },
+
+  /**  variant?: "error" | "small",
+  blur?: boolean,
+  redirect?: string,
+  textColor?: "white" | "orange" | "red" | "blue" */
   tags: ["autodocs"]
 }
 

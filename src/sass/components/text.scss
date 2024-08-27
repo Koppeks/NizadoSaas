@@ -16,4 +16,25 @@
   &.blur{
     opacity: 0.7;
   }
+
+  &.white_text{
+    color: $color-clear;
+  }
+  &.orange_text{
+    color: $color-primary;
+  }
+  &.red_text{
+    color: $color-warning;
+  }
+  &.blue_text{
+    color: $color-standout;
+  }
+
+  &.bold_text{
+    font-weight: 600;
+  }
+
+  &.pointer{
+    cursor: pointer;
+  }
 }

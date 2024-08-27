@@ -15,7 +15,7 @@ type TextComponent = <C extends React.ElementType = "span">(
 //@ts-expect-error -- Text crying null
 export const Text: TextComponent = forwardRef(
   <C extends React.ElementType = "span">(
-    { as, variant, redirect, blur, ...props }: TextProps<C>,
+    { as, variant, redirect, blur,textColor,bold, pointer,className, ...props }: TextProps<C>,
     ref?: PolymorphicRef<C>
   ) => {
     const Component = as || "span"
@@ -29,6 +29,6 @@ export const Text: TextComponent = forwardRef(
       router.push(`${redirect}`)
     }
 
-    return <Component onClick={redirect ? handleRedirect : undefined} ref={ref} className={`preset_text ${variant} ${blur && "blur"}`} {...props} />;
+    return <Component onClick={redirect ? handleRedirect : undefined} ref={ref} className={`preset_text ${variant} ${blur && "blur"} ${textColor}_text ${bold && "bold_text"} ${pointer && "pointer"} ${className}`} {...props} />;
   }
 );

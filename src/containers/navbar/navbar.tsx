@@ -8,12 +8,12 @@ import { ExpandMenu } from "@/components/expand_menu/expand_menu";
 import { requestSignOut } from "@/utils/api_requests/userForms";
 import { useRouter } from "next/navigation";
 import useSWR from "swr";
+import useStore from "@/redux/UseStore";
+import { Text } from "@/components/text/text";
+import { fetcher } from "@/libs/fetcher";
 
 export const Navbar = forwardRef<HTMLDivElement>(({}, ref) => {
-  const fetcher = (url: string | URL | Request) => fetch(url).then(res => res.json())
-
-
-
+  
   const {data, error, isLoading} = useSWR("http://localhost:3000/api/routes/user", fetcher)
   const router = useRouter();
 
@@ -21,10 +21,12 @@ export const Navbar = forwardRef<HTMLDivElement>(({}, ref) => {
     return null; // Devuelve null mientras se verifica el estado del token
   }
 
-  console.log(data)
-  console.log(error)
-  console.log(isLoading)
+  const resetStore = useStore(state => state.resetStore)
 
+  const handleSignOut = async () => {
+    resetStore()
+    await requestSignOut().then(() => router.push("/sign-in"))
+  }
 
   return (
     <div ref={ref} className="container_navbar">
@@ -74,18 +76,16 @@ export const Navbar = forwardRef<HTMLDivElement>(({}, ref) => {
         {data.success ? (
           <>
             <Iconic icon="icon_user" redirectTo="/hub" />
-            <Iconic icon="icon_bell" />
+            <Iconic icon="icon_bell"/>
             <Iconic
               icon="icon_signout"
-              customFunction={async () =>
-                await requestSignOut().then(() => router.push("/sign-in"))
-              }
+              customFunction={() => handleSignOut()}
             />
           </>
         ) : (
           <>
-            <ButtonRedirect redirectTo="/sign-up" variant="primary">
-              Try free
+            <ButtonRedirect redirectTo="/sign-up" variant="primary" type="button">
+              <Text as="p">Try free</Text>
             </ButtonRedirect>
             <Iconic redirectTo="/sign-in" text="Sign in" icon="icon_user" />
             <Iconic icon="icon_gear" />

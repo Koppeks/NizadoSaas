@@ -1,8 +1,9 @@
 import { errorHandler } from "@/app/api/_Utils/ErrorHandling";
 import { decript } from "@/libs/TokenHandler";
 import prisma from "@/libs/Prisma";
-import { successCreated } from "@/app/api/_Utils/SuccessHandling";
+import { successCreated, successRequest, successTest } from "@/app/api/_Utils/SuccessHandling";
 import { NextRequest } from "next/server";
+import { cookieValidator } from "@/app/api/_Utils/cookieValidator";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -101,5 +102,25 @@ export async function GET(request: NextRequest) {
     return successCreated("Correct", events);
   } catch (error: any) {
     return errorHandler(error);
+  }
+}
+export async function DELETE(request:NextRequest) {
+  const eventId = request.nextUrl.searchParams.get("eventId")
+  try {
+    const cookieDecripted = await cookieValidator(request)
+    
+    if(!eventId) throw ({code: "S003", message: "missing eventId"})
+
+    const deleteSequence = prisma.secuence.deleteMany({where: {eventId: eventId}})
+    const deleteRepetition = prisma.repetition.deleteMany({where: {eventId: eventId}})
+    const deleteLineal = prisma.lineal.deleteMany({where: {eventId: eventId}})
+    const deleteMiddleTable = prisma.user_Event.deleteMany({where: {eventId: eventId, userId: cookieDecripted.userId}})
+    const deleteEvent = prisma.event.delete({where: {id: eventId}})
+
+    const transaction = await prisma.$transaction([deleteSequence, deleteRepetition, deleteLineal,deleteMiddleTable, deleteEvent])
+
+    return successRequest("Success", transaction)
+  } catch (error:any) {
+    return errorHandler(error)
   }
 }

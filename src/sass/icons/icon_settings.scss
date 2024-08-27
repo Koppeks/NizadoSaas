@@ -1,0 +1,24 @@
+@import "../abstracts/variables";
+
+.small{
+  width: $preset-standar-mesure*2;
+  height: $preset-standar-mesure*2;
+}
+.medium{
+  width: $preset-standar-mesure*4;
+  height: $preset-standar-mesure*4;
+}
+.big{
+  width: $preset-standar-mesure*6;
+  height: $preset-standar-mesure*6;
+}
+
+.white_icon{
+  filter: invert(94%) sepia(5%) saturate(0%) hue-rotate(212deg) brightness(108%) contrast(91%);
+}
+.orange_icon{
+  filter: invert(74%) sepia(67%) saturate(622%) hue-rotate(334deg) brightness(104%) contrast(103%);
+}
+.gray_icon{
+  filter: brightness(0) saturate(100%) invert(84%) sepia(0%) saturate(73%) hue-rotate(187deg) brightness(82%) contrast(82%);
+}
