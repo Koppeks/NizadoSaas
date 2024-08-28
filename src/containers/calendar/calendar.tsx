@@ -91,11 +91,6 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       };
     }, [year, setYear, month, setMonth, date, setDate]);
 
-    useEffect(() => {
-      console.log(events)
-
-    },[]);
-
     const handleChangeMonth = (type: string) => {
       if (type == "add") {
         if (month < 11) {
@@ -155,7 +150,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
           spliterColor="blurred"
           spliterStyle="strong"
         />
-        <div className="calendar_days">
+        <div className="calendar_days" id="days">
           {lastDaysOfPrevMonth.map((day) => renderDay(day, false))}
           {currentDaysOfMonth.map((day) => {
             if (disabledDaysOfMonth.includes(day)) {
