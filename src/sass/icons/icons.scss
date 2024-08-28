@@ -147,3 +147,13 @@
   height: $preset-standar-mesure*2;
   display: block;
 }
+
+.arrow_icon{
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2222%22%20height%3D%2215%22%20viewBox%3D%220%200%2022%2015%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M0%205.98155V2.92754C0%201.29297%201.8544%200.348658%203.17634%201.31007L9.82366%206.14448C10.525%206.65451%2011.475%206.65451%2012.1763%206.14448L18.8237%201.31007C20.1456%200.348658%2022%201.29297%2022%202.92754V5.98155C22%206.62142%2021.6938%207.22267%2021.1763%207.59902L12.1763%2014.1445C11.475%2014.6545%2010.525%2014.6545%209.82366%2014.1445L0.823657%207.59902C0.306168%207.22267%200%206.62142%200%205.98155Z%22%20fill%3D%22%231D1D1D%22%2F%3E%0A%3C%2Fsvg%3E%0A");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: $preset-standar-mesure*2;
+  height: $preset-standar-mesure*2;
+  display: block;
+}
