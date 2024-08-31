@@ -1,0 +1,64 @@
+@import "../abstracts/variables";
+
+.Calendar_Mini_Component{
+  box-shadow: $preset-light-box-shadow;
+  padding: $preset-standar-mesure;
+  display: flex;
+  flex-direction: column;
+  gap: $preset-standar-mesure;
+
+  .calendar_navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .calendar_arrows{
+      display: flex;
+      gap: $preset-standar-mesure*2;
+
+      .left{
+        transform: rotate(90deg);
+        cursor: pointer;
+      }
+      .right{
+        transform: rotate(-90deg);
+        cursor: pointer;
+      }
+    }
+  }
+  .calendar_weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+  }
+  .calendar_days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+
+    .not_from_current_month{
+      color: $color-disabled;
+    }
+
+    .day_box{
+      width: 40px;
+      height: 20px;
+      cursor: pointer;
+      transition: $transition-fast;
+      align-items: center;
+
+      .day{
+        font-size: 14px;
+        text-align: center;
+        border-bottom-right-radius: $preset-standar-mesure;
+      }
+      &.selected{
+        background-color: $color-background;
+      }
+      .event_indicator{
+        width: 100%;
+        height: $preset-standar-mesure;
+      }
+    }
+  }
+}
